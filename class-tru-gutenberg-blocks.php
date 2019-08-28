@@ -66,7 +66,7 @@ final class TRU_Gutenberg_Blocks {
      * @return void
      */
     public function includes() {
-        include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
+        //include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
     }
 
     /**
