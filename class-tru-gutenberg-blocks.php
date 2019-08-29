@@ -88,7 +88,29 @@ final class TRU_Gutenberg_Blocks {
      * @access public
      * @return void
      */
-    public function init() {}
+    public function init() {
+        add_filter( 'block_categories', array( $this, 'block_categories'), 10, 2 );
+    }
+    
+
+    public function block_categories( $categories, $post ) {
+        if ( $post->post_type !== 'post' ) {
+            return $categories;
+        }
+        
+        return array_merge(
+            $categories,
+            array(
+                array(
+                    'slug' => 'tru',
+                    'title' => __( 'The Run Up', 'tru-gutenberg-blocks' ),
+                    'icon'  => 'groups',
+                ),
+            )
+        );
+    }
+    
+    
 }
 
 new TRU_Gutenberg_Blocks();
