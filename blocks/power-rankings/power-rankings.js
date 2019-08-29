@@ -1,41 +1,39 @@
 ( function( blocks, editor, element ) {
     var el = element.createElement;
-    var RichText = editor.RichText;
+    var registerBlockType = blocks.registerBlockType;
+    var InnerBlocks = editor.InnerBlocks;
+    
+    const blocksTemplate = [
+        [ 'core/heading', { placeholder: 'Rider Name' } ],
+        [ 'core/image', { placeholder: 'Rider Image' } ],
+        [ 'core/paragraph', { placeholder: 'Content' } ],
+    ];    
  
     blocks.registerBlockType( 'tru-blocks/power-rankings', {
         title: 'Power Rankings',
         icon: 'list-view',
         category: 'tru',
-        attributes: {
-            content: {
-                type: 'array',
-                source: 'children',
-                selector: 'p',
-            },
-        },        
-        edit: function( props ) {
-            var content = props.attributes.content;
-            
-            function onChangeContent( newContent ) {
-                props.setAttributes( { content: newContent } );
-            }
- 
-            return el( RichText, {
-                tagName: 'p',
-                className: props.className,
-                onChange: onChangeContent,
-                value: content,
-            } );
+        edit: ( props ) => {
+            return el( InnerBlocks, {
+                template: blocksTemplate,
+                templateLock: true
+            });
         },
- 
-        save: function( props ) {
-            return el( RichText.Content, {
-                tagName: 'p', value: props.attributes.content,
-            } );
-        },
+        save: ( props ) => {
+            return el( InnerBlocks.Content, {} );
+        },   
     } );
 }(
     window.wp.blocks,
     window.wp.editor,
     window.wp.element
 ) );
+
+/*
+  
+  name (string)
+  last week (int)  
+  details (editor)
+  image (image)
+    
+*/
