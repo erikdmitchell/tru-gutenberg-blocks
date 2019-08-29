@@ -94,12 +94,11 @@ final class TRU_Gutenberg_Blocks {
     
 
     public function block_categories( $categories, $post ) {
-echo "block categories";        
         if ( $post->post_type !== 'post' ) {
             return $categories;
         }
         
-        $categories =  array_merge(
+        return array_merge(
             $categories,
             array(
                 array(
@@ -109,8 +108,6 @@ echo "block categories";
                 ),
             )
         );
-        print_r($categories);
-        return $categories;
     }
     
     
