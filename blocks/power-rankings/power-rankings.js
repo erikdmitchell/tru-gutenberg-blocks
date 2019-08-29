@@ -3,8 +3,8 @@
     var RichText = editor.RichText;
  
     blocks.registerBlockType( 'tru-blocks/power-rankings', {
-        title: 'Race Predictions',
-        icon: 'format-status',
+        title: 'Power Rankings',
+        icon: 'list-view',
         category: 'tru',
         attributes: {
             content: {
