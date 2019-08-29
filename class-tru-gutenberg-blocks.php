@@ -94,20 +94,23 @@ final class TRU_Gutenberg_Blocks {
     
 
     public function block_categories( $categories, $post ) {
+echo "block categories";        
         if ( $post->post_type !== 'post' ) {
             return $categories;
         }
         
-        return array_merge(
+        $categories =  array_merge(
             $categories,
             array(
                 array(
                     'slug' => 'tru',
                     'title' => __( 'The Run Up', 'tru-gutenberg-blocks' ),
-                    'icon'  => 'groups',
+                    'icon'  => '',
                 ),
             )
         );
+        print_r($categories);
+        return $categories;
     }
     
     
