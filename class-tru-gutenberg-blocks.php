@@ -30,6 +30,7 @@ final class TRU_Gutenberg_Blocks {
     public function __construct() {
         $this->define_constants();
         $this->includes();
+        $this->load_blocks();
         $this->init();
     }
 
@@ -68,6 +69,19 @@ final class TRU_Gutenberg_Blocks {
     public function includes() {
         //include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
     }
+    
+    /**
+     * Load blocks.
+     * 
+     * @access public
+     * @return void
+     */
+    public function load_blocks() {
+        foreach ( glob( TRU_GUTENBERG_BLOCKS_PATH . 'blocks/**/*.php' ) as $file ) :
+            echo $file;
+            include_once( $file );
+        endforeach;
+    }    
 
     /**
      * Init function.
