@@ -78,7 +78,6 @@ final class TRU_Gutenberg_Blocks {
      */
     public function load_blocks() {
         foreach ( glob( TRU_GUTENBERG_BLOCKS_PATH . 'blocks/**/*.php' ) as $file ) :
-            echo $file;
             include_once( $file );
         endforeach;
     }    
