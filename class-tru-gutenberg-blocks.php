@@ -93,6 +93,14 @@ final class TRU_Gutenberg_Blocks {
     }
     
 
+    /**
+     * Custom block categories.
+     * 
+     * @access public
+     * @param mixed $categories array.
+     * @param mixed $post object.
+     * @return array
+     */
     public function block_categories( $categories, $post ) {
         if ( $post->post_type !== 'post' ) {
             return $categories;
