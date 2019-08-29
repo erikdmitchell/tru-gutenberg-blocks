@@ -1,28 +1,23 @@
 ( function( blocks, element ) {
     var el = element.createElement;
  
-    var blockStyle = {
-        backgroundColor: '#900',
-        color: '#fff',
-        padding: '20px',
-    };
- 
-    blocks.registerBlockType( 'gutenberg-examples/example-01-basic', {
-        title: 'Example: Basic',
-        icon: 'universal-access-alt',
-        category: 'layout',
-        edit: function() {
+    blocks.registerBlockType( 'tru-blocks/race-predictions', {
+        title: 'Race Predictions',
+        icon: 'format-status',
+        description: __( 'Block for race predictions.' )
+        category: 'tru',
+        edit: function( props ) {
             return el(
                 'p',
-                { style: blockStyle },
-                'Hello World, step 1 (from the editor).'
+                { className: props.className },
+                'Hello World, step 2 (from the editor, in green).'
             );
         },
         save: function() {
             return el(
                 'p',
-                { style: blockStyle },
-                'Hello World, step 1 (from the frontend).'
+                {},
+                'Hello World, step 2 (from the frontend, in red).'
             );
         },
     } );
