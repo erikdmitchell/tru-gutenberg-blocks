@@ -7,6 +7,7 @@
   	var MediaUpload = wp.editor.MediaUpload;
   	//var InspectorControls = wp.editor.InspectorControls;
   	var TextControl = components.TextControl;
+  	var IconButton = components.IconButton;
   	
     registerBlockType('tru-blocks/power-ranking-rider', { 
         title: i18n.__('Power Ranking Rider'),
@@ -15,29 +16,29 @@
         category: 'tru',
         attributes: { 
           riderName: {
-            source: 'text',
-            selector: 'h3'
+				type: 'array',
+				source: 'children',
+				selector: 'p.nelio-testimonial-name',
           },
           details: {
             type: 'array',
             source: 'children',
-            selector: 'rider-details'
+            selector: 'p'
           },
-			mediaID: {
-				type: 'number',
-			},
-			mediaURL: {
+          mediaID: {
+            type: 'number',
+          },
+          mediaURL: {
 				type: 'string',
 				source: 'attribute',
 				selector: 'img',
 				attribute: 'src',
-			},
-			          
-			          lastWeek: {
-            type: 'number',
-            source: 'text',
-            selector: 'rider-last-week'
           },
+			lastWeek: {
+				type: 'array',
+				source: 'children',
+				selector: 'p.nelio-testimonial-position',
+			},			          
         },
         edit: function (props) {
               var attributes = props.attributes;
@@ -53,6 +54,7 @@
                 el('div', { className: props.className },
                   el('div', { className: 'power-ranking-rider-image-wrap' },
 
+/*
 					el( 'div', { className: 'power-ranking-rider-image' },
 						el( MediaUpload, {
 							onSelect: onSelectImage,
@@ -68,6 +70,80 @@
 							}
 						} )
 					),
+*/
+					el( 'div', {
+						className: attributes.mediaID ? 'nelio-testimonial-image image-active' : 'nelio-testimonial-image image-inactive',
+						style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
+					},
+						el( MediaUpload, {
+							onSelect: onSelectImage,
+							type: 'image',
+							value: attributes.mediaID,
+							render: function( obj ) {
+								return el( IconButton, {
+									className: attributes.mediaID ? 'image-button' : 'button button-large',
+									onClick: obj.open
+									},
+									! attributes.mediaID ? i18n.__( 'Upload Image' ) : el( 'img', { src: attributes.mediaURL } )
+								);
+							}
+						} )
+					),
+
+					el( 'div', {
+						className: 'nelio-testimonial-content' },
+						el( RichText, {
+							tagName: 'p',
+							inline: true,
+							placeholder: i18n.__( 'Write the testimonial here...' ),
+							value: attributes.details,
+							onChange: function( newDetails ) {
+								props.setAttributes( { details: newDetails } );
+							},
+							keepPlaceholderOnFocus: true,
+/*
+							//focus: focusedEditable === 'testimonial' ? focus : null,
+							onFocus: function( focus ) {
+								props.setFocus( _.extend( {}, focus, { editable: 'testimonial' } ) );
+							},
+*/
+						} ),
+						el( RichText, {
+							tagName: 'p',
+							className: 'nelio-testimonial-name',
+							inline: false,
+							placeholder: i18n.__( 'Name' ),
+							value: attributes.riderName,
+							onChange: function( newRiderName ) {
+								props.setAttributes( { riderName: newRiderName } );
+							},
+							keepPlaceholderOnFocus: true,
+/*
+							focus: focusedEditable === 'name' ? focus : null,
+							onFocus: function( focus ) {
+								props.setFocus( _.extend( {}, focus, { editable: 'name' } ) );
+							},
+*/
+						} ),
+						el( RichText, {
+							tagName: 'p',
+							className: 'nelio-testimonial-position',
+							inline: false,
+							placeholder: i18n.__( 'Position' ),
+							value: attributes.lastWeek,
+							onChange: function( newLastWeek ) {
+								props.setAttributes( { lastWeek: newLastWeek } );
+							},
+							keepPlaceholderOnFocus: true,
+/*
+							focus: focusedEditable === 'position' ? focus : null,
+							onFocus: function( focus ) {
+								props.setFocus( _.extend( {}, focus, { editable: 'position' } ) );
+							}
+*/
+						} ),
+					),					
+/*
                   el('div', { className: 'power-ranking-rider-content' },
                     el(RichText, {
                       key: 'editable',
@@ -101,6 +177,7 @@
                     }),
                                         
                   )
+*/
                 )
                 )
               ]
@@ -108,11 +185,12 @@
         save: function (props) {
             var attributes = props.attributes;
         
+/*
             return (
               el('div', { className: props.className  },
               el('div', { className: 'power-ranking-rider'  },
                 el('div', { className: 'power-ranking-rider-image' },
-                  el('img', { src: attributes.imageURL })
+                  el('img', { src: attributes.mediaURL })
                 ),
                 el('div', { className: 'power-ranking-rider-content' },
                   el(RichText.Content, {
@@ -131,6 +209,21 @@
         )
       )
       )
+*/
+
+			return (
+				el( 'div', { className: props.className },
+					attributes.mediaURL &&
+					el( 'div', { className: 'nelio-testimonial-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
+						el( 'img', { src: attributes.mediaURL } ),
+					),
+					el( 'div', { className: 'nelio-testimonial-content' },
+						attributes.details && el( 'p', {}, attributes.details ),
+						el( 'p', { className: 'nelio-testimonial-name' }, attributes.riderName ),
+						attributes.lastWeek && el( 'p', { className: 'nelio-testimonial-position' }, attributes.lastWeek )
+					)
+				)
+			);
     }
   })	
 
