@@ -1,13 +1,3 @@
-/*
-  
-  name (string)
-  last week (int)  
-  details (editor)
-  image (image)
-    
-*/ 
-
-
 (function (blocks, editor, components, i18n, element) {
 	var el = wp.element.createElement;
   	var registerBlockType = wp.blocks.registerBlockType;
