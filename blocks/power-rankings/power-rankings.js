@@ -36,4 +36,4 @@
   details (editor)
   image (image)
     
-*/
+*/ 

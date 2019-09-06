@@ -2,6 +2,7 @@
 
 function tru_power_rankings_register_block() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-rankings/';
+    
     wp_register_script(
         'tru-power-rankings',
         $url . 'power-rankings.js',
