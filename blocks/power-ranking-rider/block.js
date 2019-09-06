@@ -74,22 +74,22 @@
 						className: 'power-ranking-rider-content' },
 						el( RichText, {
 							tagName: 'p',
-							inline: true,
-							placeholder: i18n.__( 'Write the details here...' ),
-							value: attributes.details,
-							onChange: function( newDetails ) {
-								props.setAttributes( { details: newDetails } );
-							},
-							keepPlaceholderOnFocus: true,
-						} ),
-						el( RichText, {
-							tagName: 'p',
 							className: 'power-ranking-rider-name',
 							inline: false,
 							placeholder: i18n.__( 'Rider Name' ),
 							value: attributes.riderName,
 							onChange: function( newRiderName ) {
 								props.setAttributes( { riderName: newRiderName } );
+							},
+							keepPlaceholderOnFocus: true,
+						} ),						
+						el( RichText, {
+							tagName: 'p',
+							inline: true,
+							placeholder: i18n.__( 'Write the details here...' ),
+							value: attributes.details,
+							onChange: function( newDetails ) {
+								props.setAttributes( { details: newDetails } );
 							},
 							keepPlaceholderOnFocus: true,
 						} ),
@@ -120,8 +120,8 @@
     						el( 'img', { src: attributes.mediaURL } ),
     					),
     					el( 'div', { className: 'power-ranking-rider-content' },
+                            el( 'div', { className: 'power-ranking-rider-name' }, attributes.riderName ),
     						attributes.details && el( 'div', { className: 'power-ranking-rider-details' }, attributes.details ),
-    						el( 'div', { className: 'power-ranking-rider-name' }, attributes.riderName ),
     						attributes.lastWeek && el( 'div', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
     					)
     				)
