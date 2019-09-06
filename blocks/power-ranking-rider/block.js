@@ -49,11 +49,10 @@
                     	
               return [
                 el('div', { className: props.className },
-                  el('div', { className: 'power-ranking-rider-image-wrap' },
+                  el('div', { className: 'power-ranking-rider' },
 
 					el( 'div', {
-						className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive',
-						//style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
+						className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive'
 					},
 						el( MediaUpload, {
 							onSelect: onSelectImage,
@@ -116,7 +115,7 @@
 				el( 'div', { className: props.className },
     				el('div', { className: 'power-ranking-rider'  },
     					attributes.mediaURL &&
-    					el( 'div', { className: 'power-ranking-rider-image', /* style: { backgroundImage: 'url('+attributes.mediaURL+')' } */ },
+    					el( 'div', { className: 'power-ranking-rider-image' },
     						el( 'img', { src: attributes.mediaURL } ),
     					),
     					el( 'div', { className: 'power-ranking-rider-content' },
