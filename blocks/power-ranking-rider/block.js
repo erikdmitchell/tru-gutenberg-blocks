@@ -18,12 +18,12 @@
           riderName: {
 				type: 'array',
 				source: 'children',
-				selector: 'p.power-ranking-rider-name',
+				selector: 'div.power-ranking-rider-name',
           },
           details: {
             type: 'array',
             source: 'children',
-            selector: 'p'
+            selector: 'div.power-ranking-rider-details'
           },
           mediaID: {
             type: 'number',
@@ -37,7 +37,7 @@
 			lastWeek: {
 				type: 'array',
 				source: 'children',
-				selector: 'p.power-ranking-rider-last-week',
+				selector: 'div.power-ranking-rider-last-week',
 			},			          
         },
         edit: function (props) {
@@ -114,46 +114,20 @@
             },
         save: function (props) {
             var attributes = props.attributes;
-        
-/*
-            return (
-              el('div', { className: props.className  },
-              el('div', { className: 'power-ranking-rider'  },
-                el('div', { className: 'power-ranking-rider-image' },
-                  el('img', { src: attributes.mediaURL })
-                ),
-                el('div', { className: 'power-ranking-rider-content' },
-                  el(RichText.Content, {
-                    tagName: 'h3',
-                    value: attributes.riderName
-                  }),
-                  el(RichText.Content, {
-                    tagName: 'rider-details',
-                    value: attributes.details
-                  }),
-                  el(RichText.Content, {
-                    tagName: 'rider-last-week',
-                    value: attributes.lastWeek
-                  }),
-          )
-        )
-      )
-      )
-*/
 
 			return (
 				el( 'div', { className: props.className },
-				el('div', { className: 'power-ranking-rider'  },
-					attributes.mediaURL &&
-					el( 'div', { className: 'power-ranking-rider-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
-						el( 'img', { src: attributes.mediaURL } ),
-					),
-					el( 'div', { className: 'power-ranking-rider-content' },
-						attributes.details && el( 'p', {}, attributes.details ),
-						el( 'p', { className: 'power-ranking-rider-name' }, attributes.riderName ),
-						attributes.lastWeek && el( 'p', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
-					)
-				)
+    				el('div', { className: 'power-ranking-rider'  },
+    					attributes.mediaURL &&
+    					el( 'div', { className: 'power-ranking-rider-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
+    						el( 'img', { src: attributes.mediaURL } ),
+    					),
+    					el( 'div', { className: 'power-ranking-rider-content' },
+    						attributes.details && el( 'div', { className: 'power-ranking-rider-details' }, attributes.details ),
+    						el( 'div', { className: 'power-ranking-rider-name' }, attributes.riderName ),
+    						attributes.lastWeek && el( 'div', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
+    					)
+    				)
 				)
 			);
     }
