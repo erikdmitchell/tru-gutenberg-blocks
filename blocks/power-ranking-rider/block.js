@@ -54,23 +54,6 @@
                 el('div', { className: props.className },
                   el('div', { className: 'power-ranking-rider-image-wrap' },
 
-/*
-					el( 'div', { className: 'power-ranking-rider-image' },
-						el( MediaUpload, {
-							onSelect: onSelectImage,
-							allowedTypes: 'image',
-							value: attributes.mediaID,
-							render: function( obj ) {
-								return el( components.Button, {
-										className: attributes.mediaID ? 'image-button' : 'button button-large',
-										onClick: obj.open
-									},
-									! attributes.mediaID ? i18n.__( 'Upload Image' ) : el( 'img', { src: attributes.mediaURL } )
-								);
-							}
-						} )
-					),
-*/
 					el( 'div', {
 						className: attributes.mediaID ? 'nelio-testimonial-image image-active' : 'nelio-testimonial-image image-inactive',
 						style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
@@ -91,7 +74,7 @@
 					),
 
 					el( 'div', {
-						className: 'nelio-testimonial-content' },
+						className: 'power-ranking-rider-content' },
 						el( RichText, {
 							tagName: 'p',
 							inline: true,
@@ -101,12 +84,6 @@
 								props.setAttributes( { details: newDetails } );
 							},
 							keepPlaceholderOnFocus: true,
-/*
-							//focus: focusedEditable === 'testimonial' ? focus : null,
-							onFocus: function( focus ) {
-								props.setFocus( _.extend( {}, focus, { editable: 'testimonial' } ) );
-							},
-*/
 						} ),
 						el( RichText, {
 							tagName: 'p',
@@ -118,12 +95,6 @@
 								props.setAttributes( { riderName: newRiderName } );
 							},
 							keepPlaceholderOnFocus: true,
-/*
-							focus: focusedEditable === 'name' ? focus : null,
-							onFocus: function( focus ) {
-								props.setFocus( _.extend( {}, focus, { editable: 'name' } ) );
-							},
-*/
 						} ),
 						el( RichText, {
 							tagName: 'p',
@@ -135,49 +106,8 @@
 								props.setAttributes( { lastWeek: newLastWeek } );
 							},
 							keepPlaceholderOnFocus: true,
-/*
-							focus: focusedEditable === 'position' ? focus : null,
-							onFocus: function( focus ) {
-								props.setFocus( _.extend( {}, focus, { editable: 'position' } ) );
-							}
-*/
 						} ),
 					),					
-/*
-                  el('div', { className: 'power-ranking-rider-content' },
-                    el(RichText, {
-                      key: 'editable',
-                      tagName: 'h3',
-                      placeholder: 'Rider Name',
-                      keepPlaceholderOnFocus: true,
-                      value: attributes.riderName,
-                      onChange: function (newRiderName) {
-                        props.setAttributes({ riderName: newRiderName })
-                      }
-                    }),
-                    el(RichText, {
-                      key: 'editable',
-                      tagName: 'p',
-                      placeholder: i18n.__('Write details...'),
-                      keepPlaceholderOnFocus: true,
-                      value: attributes.details,
-                      onChange: function (newDetails) {
-                        props.setAttributes({ details: newDetails })
-                      }
-                    }),
-                    el(TextControl, {
-                      //key: 'editable',
-                      //tagName: 'p',
-                      placeholder: i18n.__('Last week'),
-                      //keepPlaceholderOnFocus: true,
-                      value: attributes.lastWeek,
-                      onChange: function (newLastWeek) {
-                        props.setAttributes({ lastWeek: newLastWeek })
-                      }
-                    }),
-                                        
-                  )
-*/
                 )
                 )
               ]
@@ -217,7 +147,7 @@
 					el( 'div', { className: 'nelio-testimonial-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
 						el( 'img', { src: attributes.mediaURL } ),
 					),
-					el( 'div', { className: 'nelio-testimonial-content' },
+					el( 'div', { className: 'power-ranking-rider-content' },
 						attributes.details && el( 'p', {}, attributes.details ),
 						el( 'p', { className: 'nelio-testimonial-name' }, attributes.riderName ),
 						attributes.lastWeek && el( 'p', { className: 'nelio-testimonial-position' }, attributes.lastWeek )
