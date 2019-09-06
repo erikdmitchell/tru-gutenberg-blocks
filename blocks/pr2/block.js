@@ -25,20 +25,21 @@
         category: 'tru',
         attributes: { 
           riderName: {
-            type: 'array',
-            source: 'children',
+            //type: 'string',
+            source: 'text',
             selector: 'h3'
           },
           details: {
             type: 'array',
             source: 'children',
-            selector: 'p'
+            //selector: 'p'
+            selector: 'rider-details'
           },
-          mediaURL: {
-            type: 'string',
-            source: 'attribute',
-            selector: 'img',
-            attribute: 'src'
+          imageURL: {
+            //type: 'string',
+            //source: 'attribute',
+            attribute: 'src',
+            selector: 'rider-image'            
           },
         },
         edit: function (props) {
