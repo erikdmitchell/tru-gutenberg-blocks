@@ -78,7 +78,7 @@
 						el( RichText, {
 							tagName: 'p',
 							inline: true,
-							placeholder: i18n.__( 'Write the testimonial here...' ),
+							placeholder: i18n.__( 'Write the details here...' ),
 							value: attributes.details,
 							onChange: function( newDetails ) {
 								props.setAttributes( { details: newDetails } );
@@ -89,7 +89,7 @@
 							tagName: 'p',
 							className: 'power-ranking-rider-name',
 							inline: false,
-							placeholder: i18n.__( 'Name' ),
+							placeholder: i18n.__( 'Rider Name' ),
 							value: attributes.riderName,
 							onChange: function( newRiderName ) {
 								props.setAttributes( { riderName: newRiderName } );
@@ -100,7 +100,7 @@
 							tagName: 'p',
 							className: 'power-ranking-rider-last-week',
 							inline: false,
-							placeholder: i18n.__( 'Position' ),
+							placeholder: i18n.__( 'Last Week Rank' ),
 							value: attributes.lastWeek,
 							onChange: function( newLastWeek ) {
 								props.setAttributes( { lastWeek: newLastWeek } );
