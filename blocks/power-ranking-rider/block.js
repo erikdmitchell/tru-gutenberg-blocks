@@ -55,7 +55,7 @@
                   el('div', { className: 'power-ranking-rider-image-wrap' },
 
 					el( 'div', {
-						className: attributes.mediaID ? 'nelio-testimonial-image image-active' : 'nelio-testimonial-image image-inactive',
+						className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive',
 						style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
 					},
 						el( MediaUpload, {
@@ -144,7 +144,7 @@
 			return (
 				el( 'div', { className: props.className },
 					attributes.mediaURL &&
-					el( 'div', { className: 'nelio-testimonial-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
+					el( 'div', { className: 'power-ranking-rider-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
 						el( 'img', { src: attributes.mediaURL } ),
 					),
 					el( 'div', { className: 'power-ranking-rider-content' },
