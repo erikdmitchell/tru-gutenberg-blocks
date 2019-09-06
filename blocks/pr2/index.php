@@ -6,7 +6,7 @@ function tru_pr2_register_block() {
     wp_register_script(
         'tru-pr2-script',
         $url . 'block.js',
-        array( 'wp-blocks', 'wp-element', 'wp-editor' ),
+        array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-i18n', 'wp-editor' ),
         TRU_GUTENBERG_BLOCKS_VERSION
     );
  
