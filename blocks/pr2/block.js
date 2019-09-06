@@ -40,13 +40,9 @@
             selector: 'img',
             attribute: 'src'
           },
-          riderName: {
-            type: 'text'
-          }
         },
         edit: function (props) {
-              var attributes = props.attributes
-              var riderName = props.attributes.riderName
+              var attributes = props.attributes;
         
               var onSelectImage = function (media) {
                 return props.setAttributes({
@@ -72,30 +68,6 @@
                       }
                     })
                   ),
-/*
-                  // Display alignment toolbar within block controls.
-                  el(AlignmentToolbar, {
-                    value: alignment,
-                    onChange: onChangeAlignment
-                  })
-*/
-                ),
-                el(InspectorControls, { key: 'inspector' }, // Display the block options in the inspector panel.
-                  el(components.PanelBody, {
-                    title: i18n.__('Social Media Links'),
-                    className: 'block-social-links',
-                    initialOpen: true
-                  },
-                  el('p', {}, i18n.__('Add links to your social media profiles.')),
-                  // Email address text field option.
-                  el(TextControl, {
-                    type: 'text',
-                    label: i18n.__('Rider Nane'),
-                    value: riderName,
-                    onChange: function (newRiderName) {
-                      props.setAttributes({ riderName: newRiderName })
-                    }
-                  }))
                 ),
                 el('div', { className: props.className },
                   el('div', {
@@ -116,7 +88,7 @@
                     }
                   })
                   ),
-                  el('div', { className: 'organic-profile-content', style: { textAlign: alignment } },
+                  el('div', { className: 'organic-profile-content' },
                     el(RichText, {
                       key: 'editable',
                       tagName: 'h3',
@@ -137,29 +109,19 @@
                         props.setAttributes({ bio: newBio })
                       }
                     }),
-                    el('div', { className: 'organic-profile-social' },
-                      attributes.riderName && el('a', {
-                        className: 'social-link',
-                        href: 'mailto:' + attributes.riderName,
-                        target: '_blank'
-                      },
-                      el('i', { className: 'fa fa-envelope' })
-                      )
-                    )
                   )
                 )
               ]
             },
         save: function (props) {
-            var attributes = props.attributes
-            var riderName = props.attributes.riderName
+            var attributes = props.attributes;
         
             return (
               el('div', { className: props.className },
                 el('div', { className: 'organic-profile-image', style: { backgroundImage: 'url(' + attributes.mediaURL + ')' } },
                   el('img', { src: attributes.mediaURL })
                 ),
-                el('div', { className: 'organic-profile-content', style: { textAlign: attributes.alignment } },
+                el('div', { className: 'organic-profile-content' },
                   el(RichText.Content, {
                     tagName: 'h3',
                     value: attributes.title
@@ -168,15 +130,6 @@
                     tagName: 'p',
                     value: attributes.bio
                   }),
-                  el('div', { className: 'organic-profile-social' },
-                    attributes.riderName && el('a', {
-                      className: 'social-link',
-                      href: 'mailto:' + attributes.riderName,
-                      target: '_blank'
-                    },
-                    el('i', { className: 'fa fa-envelope' })
-              )
-            )
           )
         )
       )
