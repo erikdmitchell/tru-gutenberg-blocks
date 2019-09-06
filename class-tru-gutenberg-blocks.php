@@ -30,6 +30,7 @@ final class TRU_Gutenberg_Blocks {
     public function __construct() {
         $this->define_constants();
         $this->includes();
+        $this->load_blocks();
         $this->init();
     }
 
@@ -66,8 +67,20 @@ final class TRU_Gutenberg_Blocks {
      * @return void
      */
     public function includes() {
-        include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
+        //include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
     }
+    
+    /**
+     * Load blocks.
+     * 
+     * @access public
+     * @return void
+     */
+    public function load_blocks() {
+        foreach ( glob( TRU_GUTENBERG_BLOCKS_PATH . 'blocks/**/*.php' ) as $file ) :
+            include_once( $file );
+        endforeach;
+    }    
 
     /**
      * Init function.
@@ -75,7 +88,37 @@ final class TRU_Gutenberg_Blocks {
      * @access public
      * @return void
      */
-    public function init() {}
+    public function init() {
+        add_filter( 'block_categories', array( $this, 'block_categories'), 10, 2 );
+    }
+    
+
+    /**
+     * Custom block categories.
+     * 
+     * @access public
+     * @param mixed $categories array.
+     * @param mixed $post object.
+     * @return array
+     */
+    public function block_categories( $categories, $post ) {
+        if ( $post->post_type !== 'post' ) {
+            return $categories;
+        }
+        
+        return array_merge(
+            $categories,
+            array(
+                array(
+                    'slug' => 'tru',
+                    'title' => __( 'The Run Up', 'tru-gutenberg-blocks' ),
+                    'icon'  => '',
+                ),
+            )
+        );
+    }
+    
+    
 }
 
 new TRU_Gutenberg_Blocks();
