@@ -15,14 +15,12 @@
         category: 'tru',
         attributes: { 
           riderName: {
-            //type: 'string',
             source: 'text',
             selector: 'h3'
           },
           details: {
             type: 'array',
             source: 'children',
-            //selector: 'p'
             selector: 'rider-details'
           },
 			mediaID: {
@@ -34,6 +32,11 @@
 				selector: 'img',
 				attribute: 'src',
 			},
+			          lastWeek: {
+            type: 'number',
+            source: 'text',
+            selector: 'rider-last-week'
+          },
         },
         edit: function (props) {
               var attributes = props.attributes;
