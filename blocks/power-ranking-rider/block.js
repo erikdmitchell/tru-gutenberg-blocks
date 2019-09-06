@@ -143,6 +143,7 @@
 
 			return (
 				el( 'div', { className: props.className },
+				el('div', { className: 'power-ranking-rider'  },
 					attributes.mediaURL &&
 					el( 'div', { className: 'power-ranking-rider-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
 						el( 'img', { src: attributes.mediaURL } ),
@@ -152,6 +153,7 @@
 						el( 'p', { className: 'power-ranking-rider-name' }, attributes.riderName ),
 						attributes.lastWeek && el( 'p', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
 					)
+				)
 				)
 			);
     }
