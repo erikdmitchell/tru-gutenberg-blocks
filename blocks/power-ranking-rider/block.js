@@ -42,7 +42,7 @@
         
               var onSelectImage = function (media) {
                 return props.setAttributes({
-                  mediaURL: media.url,
+                  mediaURL: media.sizes.thumbnail.url,
                   mediaID: media.id
                 })
               }  
