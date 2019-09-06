@@ -53,7 +53,7 @@
 
 					el( 'div', {
 						className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive',
-						style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
+						//style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.mediaURL + ')' } : {}
 					},
 						el( MediaUpload, {
 							onSelect: onSelectImage,
@@ -116,7 +116,7 @@
 				el( 'div', { className: props.className },
     				el('div', { className: 'power-ranking-rider'  },
     					attributes.mediaURL &&
-    					el( 'div', { className: 'power-ranking-rider-image', style: { backgroundImage: 'url('+attributes.mediaURL+')' } },
+    					el( 'div', { className: 'power-ranking-rider-image', /* style: { backgroundImage: 'url('+attributes.mediaURL+')' } */ },
     						el( 'img', { src: attributes.mediaURL } ),
     					),
     					el( 'div', { className: 'power-ranking-rider-content' },
