@@ -18,7 +18,7 @@
           riderName: {
 				type: 'array',
 				source: 'children',
-				selector: 'p.nelio-testimonial-name',
+				selector: 'p.power-ranking-rider-name',
           },
           details: {
             type: 'array',
@@ -37,7 +37,7 @@
 			lastWeek: {
 				type: 'array',
 				source: 'children',
-				selector: 'p.nelio-testimonial-position',
+				selector: 'p.power-ranking-rider-last-week',
 			},			          
         },
         edit: function (props) {
@@ -87,7 +87,7 @@
 						} ),
 						el( RichText, {
 							tagName: 'p',
-							className: 'nelio-testimonial-name',
+							className: 'power-ranking-rider-name',
 							inline: false,
 							placeholder: i18n.__( 'Name' ),
 							value: attributes.riderName,
@@ -98,7 +98,7 @@
 						} ),
 						el( RichText, {
 							tagName: 'p',
-							className: 'nelio-testimonial-position',
+							className: 'power-ranking-rider-last-week',
 							inline: false,
 							placeholder: i18n.__( 'Position' ),
 							value: attributes.lastWeek,
@@ -149,8 +149,8 @@
 					),
 					el( 'div', { className: 'power-ranking-rider-content' },
 						attributes.details && el( 'p', {}, attributes.details ),
-						el( 'p', { className: 'nelio-testimonial-name' }, attributes.riderName ),
-						attributes.lastWeek && el( 'p', { className: 'nelio-testimonial-position' }, attributes.lastWeek )
+						el( 'p', { className: 'power-ranking-rider-name' }, attributes.riderName ),
+						attributes.lastWeek && el( 'p', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
 					)
 				)
 			);
