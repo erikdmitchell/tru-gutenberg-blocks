@@ -44,7 +44,8 @@
         
               var onSelectImage = function (media) {
                 return props.setAttributes({
-                  imageURL: media.url
+                  mediaURL: media.url,
+                  mediaID: media.id
                 })
               }  
                     	
@@ -62,7 +63,7 @@
 										className: attributes.mediaID ? 'image-button' : 'button button-large',
 										onClick: obj.open
 									},
-									! attributes.mediaID ? i18n.__( 'Upload Image', 'gutenberg-examples' ) : el( 'img', { src: attributes.mediaURL } )
+									! attributes.mediaID ? i18n.__( 'Upload Image' ) : el( 'img', { src: attributes.mediaURL } )
 								);
 							}
 						} )
