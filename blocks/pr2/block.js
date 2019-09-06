@@ -2,10 +2,10 @@
 	var el = wp.element.createElement;
   	var registerBlockType = wp.blocks.registerBlockType;
   	var RichText = wp.editor.RichText;
-  	var BlockControls = wp.editor.BlockControls;
-  	var AlignmentToolbar = wp.editor.AlignmentToolbar;
+  	//var BlockControls = wp.editor.BlockControls;
+  	//var AlignmentToolbar = wp.editor.AlignmentToolbar;
   	var MediaUpload = wp.editor.MediaUpload;
-  	var InspectorControls = wp.editor.InspectorControls;
+  	//var InspectorControls = wp.editor.InspectorControls;
   	var TextControl = components.TextControl;
   	
     registerBlockType('tru-blocks/pr2', { 
@@ -32,6 +32,7 @@
 				selector: 'img',
 				attribute: 'src',
 			},
+			          
 			          lastWeek: {
             type: 'number',
             source: 'text',
@@ -49,9 +50,9 @@
                     	
               return [
                 el('div', { className: props.className },
-                  el('div', { className: 'image-foo' },
+                  el('div', { className: 'power-ranking-rider-image-wrap' },
 
-					el( 'div', { className: 'recipe-image' },
+					el( 'div', { className: 'power-ranking-rider-image' },
 						el( MediaUpload, {
 							onSelect: onSelectImage,
 							allowedTypes: 'image',
@@ -66,7 +67,7 @@
 							}
 						} )
 					),
-                  el('div', { className: 'organic-profile-content' },
+                  el('div', { className: 'power-ranking-rider-content' },
                     el(RichText, {
                       key: 'editable',
                       tagName: 'h3',
@@ -87,6 +88,17 @@
                         props.setAttributes({ details: newDetails })
                       }
                     }),
+                    el(TextControl, {
+                      //key: 'editable',
+                      //tagName: 'p',
+                      placeholder: i18n.__('Last week'),
+                      //keepPlaceholderOnFocus: true,
+                      value: attributes.lastWeek,
+                      onChange: function (newLastWeek) {
+                        props.setAttributes({ lastWeek: newLastWeek })
+                      }
+                    }),
+                                        
                   )
                 )
                 )
@@ -96,11 +108,12 @@
             var attributes = props.attributes;
         
             return (
-              el('div', { className: props.className },
-                el('div', { className: 'organic-profile-image' },
+              el('div', { className: props.className  },
+              el('div', { className: 'power-ranking-rider'  },
+                el('div', { className: 'power-ranking-rider-image' },
                   el('img', { src: attributes.imageURL })
                 ),
-                el('div', { className: 'organic-profile-content' },
+                el('div', { className: 'power-ranking-rider-content' },
                   el(RichText.Content, {
                     tagName: 'h3',
                     value: attributes.riderName
@@ -109,8 +122,13 @@
                     tagName: 'rider-details',
                     value: attributes.details
                   }),
+                  el(RichText.Content, {
+                    tagName: 'rider-last-week',
+                    value: attributes.lastWeek
+                  }),
           )
         )
+      )
       )
     }
   })	
