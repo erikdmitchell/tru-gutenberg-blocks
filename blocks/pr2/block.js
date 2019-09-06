@@ -35,12 +35,15 @@
             //selector: 'p'
             selector: 'rider-details'
           },
-          imageURL: {
-            //type: 'string',
-            //source: 'attribute',
-            attribute: 'src',
-            selector: 'rider-image'            
-          },
+			mediaID: {
+				type: 'number',
+			},
+			mediaURL: {
+				type: 'string',
+				source: 'attribute',
+				selector: 'img',
+				attribute: 'src',
+			},
         },
         edit: function (props) {
               var attributes = props.attributes;
@@ -49,27 +52,27 @@
                 return props.setAttributes({
                   imageURL: media.url
                 })
-              }        	
+              }  
+                    	
               return [
                 el('div', { className: props.className },
-                  el('div', {
-                    className: attributes.mediaID ? 'organic-profile-image image-active' : 'organic-profile-image image-inactive',
-                    style: attributes.mediaID ? { backgroundImage: 'url(' + attributes.imageURL + ')' } : {}
-                  },
-                  el(MediaUpload, {
-                    onSelect: onSelectImage,
-                    type: 'image',
-                    value: attributes.mediaID,
-                    render: function (obj) {
-                      return el(components.Button, {
-                        className: attributes.mediaID ? 'image-button' : 'button button-large',
-                        onClick: obj.open
-                      },
-                      !attributes.mediaID ? i18n.__('Upload Image') : el('img', { src: attributes.imageURL })
-                      )
-                    }
-                  })
-                  ),
+                  el('div', { className: 'image-foo' },
+
+					el( 'div', { className: 'recipe-image' },
+						el( MediaUpload, {
+							onSelect: onSelectImage,
+							allowedTypes: 'image',
+							value: attributes.mediaID,
+							render: function( obj ) {
+								return el( components.Button, {
+										className: attributes.mediaID ? 'image-button' : 'button button-large',
+										onClick: obj.open
+									},
+									! attributes.mediaID ? i18n.__( 'Upload Image', 'gutenberg-examples' ) : el( 'img', { src: attributes.mediaURL } )
+								);
+							}
+						} )
+					),
                   el('div', { className: 'organic-profile-content' },
                     el(RichText, {
                       key: 'editable',
@@ -93,6 +96,7 @@
                     }),
                   )
                 )
+                )
               ]
             },
         save: function (props) {
@@ -100,7 +104,7 @@
         
             return (
               el('div', { className: props.className },
-                el('div', { className: 'organic-profile-image', style: { backgroundImage: 'url(' + attributes.imageURL + ')' } },
+                el('div', { className: 'organic-profile-image' },
                   el('img', { src: attributes.imageURL })
                 ),
                 el('div', { className: 'organic-profile-content' },
@@ -109,7 +113,7 @@
                     value: attributes.riderName
                   }),
                   el(RichText.Content, {
-                    tagName: 'p',
+                    tagName: 'rider-details',
                     value: attributes.details
                   }),
           )
