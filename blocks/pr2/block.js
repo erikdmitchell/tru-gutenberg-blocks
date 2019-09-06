@@ -24,12 +24,12 @@
         icon: 'list-view',
         category: 'tru',
         attributes: { 
-          title: {
+          riderName: {
             type: 'array',
             source: 'children',
             selector: 'h3'
           },
-          bio: {
+          details: {
             type: 'array',
             source: 'children',
             selector: 'p'
@@ -92,21 +92,21 @@
                     el(RichText, {
                       key: 'editable',
                       tagName: 'h3',
-                      placeholder: 'Profile Name',
+                      placeholder: 'Rider Name',
                       keepPlaceholderOnFocus: true,
-                      value: attributes.title,
-                      onChange: function (newTitle) {
-                        props.setAttributes({ title: newTitle })
+                      value: attributes.riderName,
+                      onChange: function (newRiderName) {
+                        props.setAttributes({ riderName: newRiderName })
                       }
                     }),
                     el(RichText, {
                       key: 'editable',
                       tagName: 'p',
-                      placeholder: i18n.__('Write a brief bio...'),
+                      placeholder: i18n.__('Write details...'),
                       keepPlaceholderOnFocus: true,
-                      value: attributes.bio,
-                      onChange: function (newBio) {
-                        props.setAttributes({ bio: newBio })
+                      value: attributes.details,
+                      onChange: function (newDetails) {
+                        props.setAttributes({ details: newDetails })
                       }
                     }),
                   )
@@ -124,11 +124,11 @@
                 el('div', { className: 'organic-profile-content' },
                   el(RichText.Content, {
                     tagName: 'h3',
-                    value: attributes.title
+                    value: attributes.riderName
                   }),
                   el(RichText.Content, {
                     tagName: 'p',
-                    value: attributes.bio
+                    value: attributes.details
                   }),
           )
         )
