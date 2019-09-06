@@ -2,10 +2,7 @@
 	var el = wp.element.createElement;
   	var registerBlockType = wp.blocks.registerBlockType;
   	var RichText = wp.editor.RichText;
-  	//var BlockControls = wp.editor.BlockControls;
-  	//var AlignmentToolbar = wp.editor.AlignmentToolbar;
   	var MediaUpload = wp.editor.MediaUpload;
-  	//var InspectorControls = wp.editor.InspectorControls;
   	var TextControl = components.TextControl;
   	var IconButton = components.IconButton;
   	
