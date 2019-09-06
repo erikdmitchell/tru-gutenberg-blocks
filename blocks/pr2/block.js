@@ -204,45 +204,13 @@
                     value: attributes.title
                   }),
                   el(RichText.Content, {
-                    tagName: 'h5',
-                    value: attributes.subtitle
-                  }),
-                  el(RichText.Content, {
                     tagName: 'p',
                     value: attributes.bio
                   }),
                   el('div', { className: 'organic-profile-social' },
-                    attributes.facebookURL && el('a', {
+                    attributes.riderName && el('a', {
                       className: 'social-link',
-                      href: attributes.facebookURL,
-                      target: '_blank'
-                    },
-                    el('i', { className: 'fa fa-facebook' })
-                    ),
-                    attributes.twitterURL && el('a', {
-                      className: 'social-link',
-                      href: attributes.twitterURL,
-                      target: '_blank'
-                    },
-                    el('i', { className: 'fa fa-twitter' })
-                    ),
-                    attributes.instagramURL && el('a', {
-                      className: 'social-link',
-                      href: attributes.instagramURL,
-                      target: '_blank'
-                    },
-                    el('i', { className: 'fa fa-instagram' })
-                    ),
-                    attributes.linkedURL && el('a', {
-                      className: 'social-link',
-                      href: attributes.linkedURL,
-                      target: '_blank'
-                    },
-                    el('i', { className: 'fa fa-linkedin' })
-                    ),
-                    attributes.emailAddress && el('a', {
-                      className: 'social-link',
-                      href: 'mailto:' + attributes.emailAddress,
+                      href: 'mailto:' + attributes.riderName,
                       target: '_blank'
                     },
                     el('i', { className: 'fa fa-envelope' })
