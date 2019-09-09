@@ -38,38 +38,113 @@
          
         	return (
         		el( Fragment, {},
-        			el( InspectorControls, {},
-        				el( PanelBody, { title: 'Form Settings', initialOpen: true },
-         
-        					/* Text Field */
-        					el( PanelRow, {},
-        						el( TextControl,
-        							{
-        								label: 'List ID',
-        								onChange: ( value ) => {
-        									props.setAttributes( { list_id: value } );
-        								},
-        								value: props.attributes.list_id
-        							}
-        						)
-        					),
-         
-        					/* Toggle Field */
-        					el( PanelRow, {},
-        						el( ToggleControl,
-        							{
-        								label: 'Double Opt In',
-        								onChange: ( value ) => {
-        									props.setAttributes( { doubleoptin: value } );
-        								},
-        								checked: props.attributes.doubleoptin,
-        							}
-        						)
-        					)
-         
-        				),
-         
-        			),
+
+el( InspectorControls, {},
+ 
+	// 1st Panel – Form Settings
+	el( PanelBody, { title: 'Form Settings', initialOpen: true },
+ 
+		// Text field
+		el( PanelRow, {},
+			el( TextControl,
+				{
+					label: 'List ID',
+					onChange: ( value ) => {
+						props.setAttributes( { list_id: value } );
+					},
+					// type: 'number', // in case it is a number field
+					value: props.attributes.list_id
+				}
+			)
+		),
+ 
+		// Toggle
+		el( PanelRow, {},
+			el( ToggleControl,
+				{
+					label: 'Double Opt In',
+					onChange: ( value ) => {
+						props.setAttributes( { doubleoptin: value } );
+					},
+					checked: props.attributes.doubleoptin,
+				}
+			)
+		)
+ 
+	),
+ 
+	// 2nd Panel – Awesome Fields (closed by default, see initialOpen parameter)
+	el( PanelBody, { title: 'Awesome fields', initialOpen: false },
+ 
+		// Textarea field
+		el( TextareaControl,
+			{
+				label: 'Textarea Control',
+				onChange: ( value ) => {
+					props.setAttributes( { textarea_attr: value } );
+				},
+				value: props.attributes.textarea_attr,
+			}
+		),
+ 
+		// Checkbox field
+		el( CheckboxControl,
+			{
+				label: 'Checkbox Control',
+				onChange: ( value ) => {
+					props.setAttributes( { chekbox_attr: value } );
+				},
+				checked: props.attributes.chekbox_attr,
+			}
+		),
+ 
+		// Select dropdown field
+		el( SelectControl,
+			{
+				label: 'Select Control',
+				options : [
+					{ label: 'Option 1', value: 'val_1' },
+					{ label: 'Option 2', value: 'val_2' },
+				],
+				onChange: ( value ) => {
+					props.setAttributes( { select_attr: value } );
+				},
+				value: props.attributes.select_attr
+			}
+		),
+ 
+		// Radio buttons
+		el( RadioControl,
+			{
+				label: 'Radio Control',
+				//help: 'Some kind of description',
+				options : [
+					{ label: 'Option 1', value: 'value_1' },
+					{ label: 'Option 2', value: 'value_2' },
+				],
+				onChange: ( value ) => {
+					props.setAttributes( { radio_attr: value } );
+				},
+				selected: props.attributes.radio_attr
+			}
+		),
+ 
+		// Range
+		el( RangeControl,
+			{
+				label: 'Range Control',
+				min: 2,
+				max: 10,
+				onChange: ( value ) => {
+					props.setAttributes( { range_attr: value } );
+				},
+				value: props.attributes.range_attr
+			}
+		),
+ 
+	)
+ 
+),
          
         			/*  
         			 * Here will be your block markup 
