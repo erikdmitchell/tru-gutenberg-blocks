@@ -14,6 +14,26 @@
         [ 'core/image', {} ],
         [ 'core/paragraph', { placeholder: 'Image Details' } ],
     ];
+    
+    const TEMPLATE_OPTIONS = [
+    	{
+    		title: 'Two Columns',
+    		//icon: <svg />,
+    		template: [
+    			[ 'core/column', { width: 50 } ],
+    			[ 'core/column', { width: 50 } ],
+    		],
+    	},
+    	{
+    		title: 'Three Columns',
+    		//icon: <svg />,
+    		template: [
+    			[ 'core/column', { width: 33.33 } ],
+    			[ 'core/column', { width: 33.33 } ],
+    			[ 'core/column', { width: 33.33 } ],
+    		],
+    	},
+    ];    
 
     registerBlockType( 'tru-blocks/template', {
         title: 'My Template Block',
@@ -21,7 +41,7 @@
         attributes: {
         	count: {
         		type: 'number',
-        		default: 2
+        		default: 1
         	}
         },       
         edit: function( props ) {
@@ -36,6 +56,7 @@
                 				max: 10,
                 				onChange: ( value ) => {
                 					props.setAttributes( { count: value } );
+                					console.log('update: ' + value);
                 				},
                 				value: props.attributes.count
                             }),
@@ -47,9 +68,48 @@
         			 * Here will be your block markup 
         			 */
                      el( InnerBlocks, {
+    					__experimentalTemplateOptions: TEMPLATE_OPTIONS,
+    					//__experimentalOnSelectTemplateOption: setTemplate,
+/*
+    					__experimentalOnSelectTemplateOption={ ( nextTemplate ) => {
+    						if ( nextTemplate === undefined ) {
+    							nextTemplate = getColumnsTemplate( DEFAULT_COLUMNS );
+    						}
+    
+    						setTemplate( nextTemplate );
+    						setForceUseTemplate( true );
+    					} }
+*/
+    					//__experimentalAllowTemplateOptionSkip,
+    					//allowedBlocks={ ALLOWED_BLOCKS } />
+					
+                        template: BLOCKS_TEMPLATE,
+                        templateLock: false
+                     })        			 
+/*
+			<div className={ classes }>
+				<InnerBlocks
+					__experimentalTemplateOptions={ TEMPLATE_OPTIONS }
+					__experimentalOnSelectTemplateOption={ ( nextTemplate ) => {
+						if ( nextTemplate === undefined ) {
+							nextTemplate = getColumnsTemplate( DEFAULT_COLUMNS );
+						}
+
+						setTemplate( nextTemplate );
+						setForceUseTemplate( true );
+					} }
+					__experimentalAllowTemplateOptionSkip
+					template={ showTemplateSelector ? null : template }
+					templateLock="all"
+					allowedBlocks={ ALLOWED_BLOCKS } />
+			</div>  
+*/        			 
+/*
+                     el( InnerBlocks, {
                         template: BLOCKS_TEMPLATE,
                         templateLock: false
                      })
+*/
         		)
             )
         },
