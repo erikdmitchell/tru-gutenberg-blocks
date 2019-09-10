@@ -1,15 +1,3 @@
-function getColumnsTemplate(count) {
-	let templates = [];
-
-	for (let i = 0; i < count; i++) {
-		templates.push([
-			'core/image'
-		]);
-	}
-
-	return templates;
-}
-
 (function (blocks, editor, components, i18n, element) {
     const el = wp.element.createElement;
     const { registerBlockType } = wp.blocks;
@@ -43,7 +31,38 @@ function getColumnsTemplate(count) {
         edit: function( props ) {
             var attributes = props.attributes;
             
-            const [ template, setTemplate ] = useState( getColumnsTemplate( attributes.count ) );
+            // load functions.
+            var getColumnsTemplate = function(count) {
+                return times( count, () => [ 'core/image' ] );
+            }            
+            
+            var updateColumns = function(oldCount, newCount) {
+            	const { clientId } = ownProps;
+            	const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
+            	const { getBlocks } = registry.select( 'core/block-editor' );
+            
+            	let innerBlocks = getBlocks( clientId );
+            	//const hasExplicitWidths = hasExplicitColumnWidths( innerBlocks );
+            
+            	// Redistribute available width for existing inner blocks.
+            	const isAddingColumn = newCount > oldCount;
+            
+            	if ( isAddingColumn ) {
+            		innerBlocks = [
+            			innerBlocks,
+            			times( newColumns - previousColumns, () => {
+            				return createBlock( 'core/column' );
+            			} ),
+            		];
+            	} else {
+            		// The removed column will be the last of the inner blocks.
+            		innerBlocks = dropRight( innerBlocks, previousColumns - newColumns );
+            	}
+            
+            	replaceInnerBlocks( clientId, innerBlocks, false );    
+            }            
+            
+            const [ template, setTemplate ] = useState( getColumnsTemplate( attributes.count ) );            
             
         	return (
         		el( Fragment, {},
@@ -55,9 +74,8 @@ function getColumnsTemplate(count) {
                 				min: 1,
                 				max: 10,
                 				onChange: ( value ) => {
+                    				updateColumns(attributes.count, value);
                 					props.setAttributes( { count: value } );
-                					updateColumns(value);
-                					console.log('update: ' + value);
                 				},
                 				value: attributes.count
                             }),
@@ -79,36 +97,12 @@ function getColumnsTemplate(count) {
     						setTemplate( nextTemplate );
     						//setForceUseTemplate( true );
     					},
-    					//__experimentalAllowTemplateOptionSkip,
+    					__experimentalAllowTemplateOptionSkip: true,
     					allowedBlocks: ALLOWED_BLOCKS,
 					
                         template: template,
                         templateLock: false
                      })      			 
-/*
-			<div className={ classes }>
-				<InnerBlocks
-					__experimentalTemplateOptions={ TEMPLATE_OPTIONS }
-					__experimentalOnSelectTemplateOption={ ( nextTemplate ) => {
-						if ( nextTemplate === undefined ) {
-							nextTemplate = getColumnsTemplate( DEFAULT_COLUMNS );
-						}
-
-						setTemplate( nextTemplate );
-						setForceUseTemplate( true );
-					} }
-					__experimentalAllowTemplateOptionSkip
-					template={ showTemplateSelector ? null : template }
-					templateLock="all"
-					allowedBlocks={ ALLOWED_BLOCKS } />
-			</div>  
-*/        			 
-/*
-                     el( InnerBlocks, {
-                        template: BLOCKS_TEMPLATE,
-                        templateLock: false
-                     })
-*/
         		)
             )
         },
