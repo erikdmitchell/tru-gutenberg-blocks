@@ -104,7 +104,11 @@
             )
         },
         save: ( props ) => {
-            return el( InnerBlocks.Content, {} );
+            return ( 
+                el( 'div', { className: 'power-rankings' },
+                    el( InnerBlocks.Content, {} )
+                )
+            )
         },
     }); 
 })(
