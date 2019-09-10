@@ -32,8 +32,8 @@ add_action( 'enqueue_block_editor_assets', 'tru_power_ranking_rider_block_editor
 
 function tru_power_ranking_rider_block_frontend_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-ranking-rider/';
-    
-    wp_register_style(
+
+    wp_enqueue_style(
         'tru-power-ranking-rider-style',
         $url . 'style.css',
         array( ),

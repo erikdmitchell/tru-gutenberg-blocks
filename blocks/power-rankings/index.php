@@ -33,7 +33,7 @@ add_action( 'enqueue_block_editor_assets', 'tru_power_rankings_block_editor_styl
 function tru_power_rankings_block_frontend_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-rankings/';
     
-    wp_register_style(
+    wp_enqueue_style(
         'tru-power-rankings-style',
         $url . 'style.css',
         array( ),
