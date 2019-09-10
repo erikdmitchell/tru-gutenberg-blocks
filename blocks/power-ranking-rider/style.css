@@ -4,6 +4,11 @@
 }
 .power-ranking-rider .power-ranking-rider-image {
     float: left;
+    border-radius: 5px;
+    padding: 0 15px;
+}
+.power-ranking-rider .power-ranking-rider-image img {
+    border-radius: 5px;
 }
 .power-ranking-rider .power-ranking-rider-image.image-active {}
 .power-ranking-rider .power-ranking-rider-image.image-inactive {}
@@ -12,6 +17,7 @@
 }
 .power-ranking-rider .power-ranking-rider-content .power-ranking-rider-name {
     font-weight: bold;
+    margin-bottom: 1rem;
 }
 .power-ranking-rider .power-ranking-rider-content .power-ranking-rider-last-week {
 }
