@@ -1,6 +1,6 @@
 (function (blocks, editor, components, i18n, element, data) {
     const el = wp.element.createElement;
-    const { registerBlockType } = blocks;
+    const { registerBlockType, createBlock } = blocks;
     const { InnerBlocks } = editor;
 	const { RichText, InspectorControls } = editor;
 	const { Fragment, useState } = element;
@@ -17,7 +17,7 @@
     ];
     
     const ALLOWED_BLOCKS = [ 'core/image' ];
-    const ffffff = 1;
+    const DEFAULT_COUNT = 1;
 
     registerBlockType( 'tru-blocks/template', {
         title: 'My Template Block',
@@ -46,11 +46,11 @@
             	// Redistribute available width for existing inner blocks.
             	const isAddingColumn = newCount > oldCount;
             
-            	if ( isAddingColumn ) {
+            	if ( isAddingColumn ) {              	
             		innerBlocks = [
-            			innerBlocks,
-            			times( newCount - oldCount, () => {
-            				return createBlock( 'core/column' );
+            			...innerBlocks,
+            			...times( newCount - oldCount, () => {
+            				return createBlock( 'core/image' );
             			} ),
             		];
             	} else {
@@ -90,7 +90,7 @@
     					__experimentalOnSelectTemplateOption: setTemplate,
     					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
     						if ( nextTemplate === undefined ) {
-    							nextTemplate = getColumnsTemplate( ffffff );
+    							nextTemplate = getColumnsTemplate( DEFAULT_COUNT );
     						}
     
     						setTemplate( nextTemplate );
