@@ -9,12 +9,11 @@
     	Panel,
     	PanelBody
     } = components;
-    const { times } = lodash;
-    const { dispatch, useSelect, registry } = data;
+    const { times, dropRight } = lodash;
+    const { dispatch, select, registry } = data;
      
     const BLOCKS_TEMPLATE = [
-        [ 'core/image', {} ],
-        //[ 'core/paragraph', { placeholder: 'Image Details' } ],
+        [ 'core/image', {} ]
     ];
     
     const ALLOWED_BLOCKS = [ 'core/image' ];
@@ -40,10 +39,9 @@
             var updateColumns = function(oldCount, newCount) {              
             	const { clientId } = props;
             	const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
-            	const { getBlocks } = registry.select( 'core/block-editor' );
+            	const { getBlocks } = select( 'core/block-editor' );
             
             	let innerBlocks = getBlocks( clientId );
-            	//const hasExplicitWidths = hasExplicitColumnWidths( innerBlocks );
             
             	// Redistribute available width for existing inner blocks.
             	const isAddingColumn = newCount > oldCount;
@@ -51,13 +49,13 @@
             	if ( isAddingColumn ) {
             		innerBlocks = [
             			innerBlocks,
-            			times( newColumns - previousColumns, () => {
+            			times( newCount - oldCount, () => {
             				return createBlock( 'core/column' );
             			} ),
             		];
             	} else {
             		// The removed column will be the last of the inner blocks.
-            		innerBlocks = dropRight( innerBlocks, previousColumns - newColumns );
+            		innerBlocks = dropRight( innerBlocks, oldCount - newCount );
             	}
             
             	replaceInnerBlocks( clientId, innerBlocks, false );    
