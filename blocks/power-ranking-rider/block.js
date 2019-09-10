@@ -9,7 +9,7 @@
     registerBlockType('tru-blocks/power-ranking-rider', { 
         title: i18n.__('Power Ranking Rider'),
         description: i18n.__('A custom block for displaying a rider in a power ranking.'),
-        icon: 'admin-users',
+        icon: 'businessman',
         category: 'tru',
         attributes: { 
           riderName: {
