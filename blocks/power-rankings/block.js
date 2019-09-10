@@ -86,6 +86,8 @@
         			/*  
         			 * Here will be your block markup 
         			 */
+        			 el( 'div', { className: 'power-rankings-wrap' },
+        			 el( 'ol', { reversed: true},
                      el( InnerBlocks, {
     					__experimentalOnSelectTemplateOption: setTemplate,
     					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
@@ -99,15 +101,18 @@
     					allowedBlocks: ALLOWED_BLOCKS,
                         template: template,
                         templateLock: false
-                     })      			 
+                     }) 
+                     )  
+                     )   			 
         		)
             )
         },
         save: ( props ) => {
             return ( 
-                el( 'div', { className: 'power-rankings' },
+                el( 'div', { className: 'power-rankings-wrap' },
+                el( 'ol', { reversed: true },
                     el( InnerBlocks.Content, {} )
-                )
+                ))
             )
         },
     }); 

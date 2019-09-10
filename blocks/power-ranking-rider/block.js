@@ -48,7 +48,7 @@
             }  
             
             return [              
-                el('div', { className: props.className },
+                el('li', { className: props.className },
                     el('div', { className: 'power-ranking-rider' },                    
                         el( 'div', { className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive' },
                             el( MediaUpload, {
@@ -108,7 +108,7 @@
             var attributes = props.attributes;
             
             return (
-                el( 'div', { className: props.className },
+                el( 'li', { className: props.className },
                     el('div', { className: 'power-ranking-rider'  },
                         attributes.mediaURL &&
                         el( 'div', { className: 'power-ranking-rider-image' },
