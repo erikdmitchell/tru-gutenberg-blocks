@@ -1,5 +1,7 @@
 .wp-block-tru-blocks-power-ranking-rider {}
-.power-ranking-rider {}
+.power-ranking-rider {
+    overflow: hidden;
+}
 .power-ranking-rider .power-ranking-rider-image {
     float: left;
 }
@@ -12,5 +14,7 @@
     font-weight: bold;
 }
 .power-ranking-rider .power-ranking-rider-content .power-ranking-rider-last-week {
-    border-top: 1px solid #000;
+    border: 1px solid #000;
+    padding: 3px 5px;
+    margin-top: 1rem;
 }
