@@ -19,8 +19,9 @@
     const ALLOWED_BLOCKS = [ 'core/image' ];
     const DEFAULT_COUNT = 1;
 
-    registerBlockType( 'tru-blocks/template', {
-        title: 'My Template Block',
+    registerBlockType( 'tru-blocks/power-rankings', {
+        title: 'Power Rankings',
+        icon: 'list-view',
         category: 'tru',
         attributes: {
         	count: {
