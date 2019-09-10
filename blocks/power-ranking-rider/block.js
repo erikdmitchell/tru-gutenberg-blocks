@@ -48,8 +48,9 @@
             var attributes = props.attributes;
             
             var onSelectImage = function (media) {
+                console.log(media.sizes)
                 return props.setAttributes({
-                    mediaURL: media.sizes.thumbnail.url,
+                    mediaURL: media.sizes.power_ranking.url,
                     mediaID: media.id
                 })
             }  

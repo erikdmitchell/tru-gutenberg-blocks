@@ -41,3 +41,15 @@ function tru_power_ranking_rider_block_frontend_styles() {
     );    
 }
 add_action( 'enqueue_block_assets', 'tru_power_ranking_rider_block_frontend_styles' );
+
+function tru_power_ranking_add_image_size() {
+    add_image_size( 'power_ranking', 280, 160, true );
+}
+add_action( 'init', 'tru_power_ranking_add_image_size' );
+
+function tru_power_ranking_image_sizes_admin( $sizes ) {
+    return array_merge( $sizes, array(
+        'power_ranking' => __( 'Power Ranking' ),
+    ) );
+}
+add_filter( 'image_size_names_choose', 'tru_power_ranking_image_sizes_admin' );
