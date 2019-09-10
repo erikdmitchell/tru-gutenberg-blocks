@@ -13,18 +13,18 @@
     const { dispatch, select, registry } = data;
      
     const BLOCKS_TEMPLATE = [
-        [ 'core/image', {} ]
+        [ 'tru-blocks/power-ranking-rider', {} ]
     ];
     
-    const ALLOWED_BLOCKS = [ 'core/image' ];
-    const DEFAULT_COUNT = 1;
+    const ALLOWED_BLOCKS = [ 'tru-blocks/power-ranking-rider' ];
+    const DEFAULT_BLOCK_COUNT = 1;
 
     registerBlockType( 'tru-blocks/power-rankings', {
         title: 'Power Rankings',
         icon: 'list-view',
         category: 'tru',
         attributes: {
-        	count: {
+        	blockCount: {
         		type: 'number',
         		default: 1
         	}
@@ -34,7 +34,7 @@
             
             // load functions.
             var getColumnsTemplate = function(count) {
-                return times( count, () => [ 'core/image' ] );
+                return times( count, () => [ 'tru-blocks/power-ranking-rider' ] );
             }            
             
             var updateColumns = function(oldCount, newCount) {              
@@ -51,7 +51,7 @@
             		innerBlocks = [
             			...innerBlocks,
             			...times( newCount - oldCount, () => {
-            				return createBlock( 'core/image' );
+            				return createBlock( 'tru-blocks/power-ranking-rider' );
             			} ),
             		];
             	} else {
@@ -62,7 +62,7 @@
             	replaceInnerBlocks( clientId, innerBlocks, false );    
             }            
             
-            const [ template, setTemplate ] = useState( getColumnsTemplate( attributes.count ) );            
+            const [ template, setTemplate ] = useState( getColumnsTemplate( attributes.blockCount ) );            
             
         	return (
         		el( Fragment, {},
@@ -74,8 +74,8 @@
                 				min: 1,
                 				max: 10,
                 				onChange: ( value ) => {
-                    				updateColumns(attributes.count, value);
-                					props.setAttributes( { count: value } );
+                    				updateColumns(attributes.blockCount, value);
+                					props.setAttributes( { blockCount: value } );
                 				},
                 				value: attributes.count
                             }),
@@ -87,19 +87,16 @@
         			 * Here will be your block markup 
         			 */
                      el( InnerBlocks, {
-    					//__experimentalTemplateOptions: TEMPLATE_OPTIONS,
     					__experimentalOnSelectTemplateOption: setTemplate,
     					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
     						if ( nextTemplate === undefined ) {
-    							nextTemplate = getColumnsTemplate( DEFAULT_COUNT );
+    							nextTemplate = getColumnsTemplate( DEFAULT_BLOCK_COUNT );
     						}
     
     						setTemplate( nextTemplate );
-    						//setForceUseTemplate( true );
     					},
     					__experimentalAllowTemplateOptionSkip: true,
     					allowedBlocks: ALLOWED_BLOCKS,
-					
                         template: template,
                         templateLock: false
                      })      			 
