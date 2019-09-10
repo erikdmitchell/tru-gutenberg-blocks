@@ -108,10 +108,10 @@
         },
     }); 
 })(
-  window.wp.blocks,
-  window.wp.editor,
-  window.wp.components,
-  window.wp.i18n,
-  window.wp.element,
-  window.wp.data
+    window.wp.blocks,
+    window.wp.editor,
+    window.wp.components,
+    window.wp.i18n,
+    window.wp.element,
+    window.wp.data
 )
