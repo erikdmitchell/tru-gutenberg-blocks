@@ -11,6 +11,7 @@
         description: i18n.__('A custom block for displaying a rider in a power ranking.'),
         icon: 'businessman',
         category: 'tru',
+        parent: ['tru-blocks/power-ranking-rider'],
         attributes: { 
             riderName: {
                 type: 'array',
