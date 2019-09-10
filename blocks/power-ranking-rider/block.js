@@ -1,10 +1,17 @@
 (function (blocks, editor, components, i18n, element) {
     var el = wp.element.createElement;
     var registerBlockType = wp.blocks.registerBlockType;
-    var RichText = wp.editor.RichText;
+    const { RichText, InspectorControls } = editor;
     var MediaUpload = wp.editor.MediaUpload;
     var TextControl = components.TextControl;
     var IconButton = components.IconButton;
+    
+	const { Fragment, useState } = element;
+    const {
+    	RangeControl,
+    	Panel,
+    	PanelBody
+    } = components;    
     
     registerBlockType('tru-blocks/power-ranking-rider', { 
         title: i18n.__('Power Ranking Rider'),
@@ -33,9 +40,10 @@
                 attribute: 'src',
             },
             lastWeek: {
-                type: 'array',
-                source: 'children',
-                selector: 'div.power-ranking-rider-last-week',
+                type: 'string',
+                //source: 'children',
+                //selector: 'div.power-ranking-rider-last-week',
+                default: 'n/a'
             },			          
         },
         edit: function (props) {
@@ -48,62 +56,64 @@
                 })
             }  
             
-            return [              
-                el('li', { className: props.className },
-                    el('div', { className: 'power-ranking-rider' },                    
-                        el( 'div', { className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive' },
-                            el( MediaUpload, {
-                                onSelect: onSelectImage,
-                                type: 'image',
-                                value: attributes.mediaID,
-                                render: function( obj ) {
-                                    return el( IconButton, {
-                                        className: attributes.mediaID ? 'image-button' : 'button button-large',
-                                        onClick: obj.open
-                                        },
-                                        ! attributes.mediaID ? i18n.__( 'Upload Image' ) : el( 'img', { src: attributes.mediaURL } )
-                                    );
-                                }
-                            } )
-                        ),
-                        
-                        el( 'div', { className: 'power-ranking-rider-content' },
-                            el( RichText, {
-                                tagName: 'p',
-                                className: 'power-ranking-rider-name',
-                                inline: false,
-                                placeholder: i18n.__( 'Rider Name' ),
-                                value: attributes.riderName,
-                                onChange: function( newRiderName ) {
-                                    props.setAttributes( { riderName: newRiderName } );
-                                },
-                                keepPlaceholderOnFocus: true,
-                            } ),						
-                            el( RichText, {
-                                tagName: 'p',
-                                inline: true,
-                                placeholder: i18n.__( 'Write the details here...' ),
-                                value: attributes.details,
-                                onChange: function( newDetails ) {
-                                    props.setAttributes( { details: newDetails } );
-                                },
-                                keepPlaceholderOnFocus: true,
-                            } ),
-                            el( RichText, {
-                                tagName: 'p',
-                                className: 'power-ranking-rider-last-week',
-                                inline: false,
-                                placeholder: i18n.__( 'Last Week Rank' ),
-                                value: attributes.lastWeek,
-                                onChange: function( newLastWeek ) {
-                                    props.setAttributes( { lastWeek: newLastWeek } );
-                                },
-                                keepPlaceholderOnFocus: true,
-                            } ),
-                        ),					
+            return (          
+                el( Fragment, {},
+                    el( InspectorControls, {},
+                    	el( PanelBody, { title: 'Block Settings', initialOpen: true },
+                            el( TextControl, {
+								label: 'Last Week',
+								onChange: ( value ) => {
+									props.setAttributes( { lastWeek: value } );
+								},
+								value: attributes.lastWeek
+							})
+                    	) 
+                    ),                    
+                    el('li', { className: props.className },
+                        el('div', { className: 'power-ranking-rider' },                    
+                            el( 'div', { className: attributes.mediaID ? 'power-ranking-rider-image image-active' : 'power-ranking-rider-image image-inactive' },
+                                el( MediaUpload, {
+                                    onSelect: onSelectImage,
+                                    type: 'image',
+                                    value: attributes.mediaID,
+                                    render: function( obj ) {
+                                        return el( IconButton, {
+                                            className: attributes.mediaID ? 'image-button' : 'button button-large',
+                                            onClick: obj.open
+                                            },
+                                            ! attributes.mediaID ? i18n.__( 'Upload Image' ) : el( 'img', { src: attributes.mediaURL } )
+                                        );
+                                    }
+                                } )
+                            ),
+                            
+                            el( 'div', { className: 'power-ranking-rider-content' },
+                                el( RichText, {
+                                    tagName: 'p',
+                                    className: 'power-ranking-rider-name',
+                                    inline: false,
+                                    placeholder: i18n.__( 'Rider Name' ),
+                                    value: attributes.riderName,
+                                    onChange: function( newRiderName ) {
+                                        props.setAttributes( { riderName: newRiderName } );
+                                    },
+                                    keepPlaceholderOnFocus: true,
+                                } ),						
+                                el( RichText, {
+                                    tagName: 'p',
+                                    inline: true,
+                                    placeholder: i18n.__( 'Write the details here...' ),
+                                    value: attributes.details,
+                                    onChange: function( newDetails ) {
+                                        props.setAttributes( { details: newDetails } );
+                                    },
+                                    keepPlaceholderOnFocus: true,
+                                } ),
+                            ),					
+                        )
                     )
                 )
-            ]
+            )
         },
         save: function (props) {
             var attributes = props.attributes;

@@ -67,7 +67,6 @@
         	return (
         		el( Fragment, {},
                     el( InspectorControls, {},
-                    	// Panel
                     	el( PanelBody, { title: 'Block Settings', initialOpen: true },
                     		el( RangeControl, {
                 				label: 'Rider Count',
