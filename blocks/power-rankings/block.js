@@ -24,7 +24,7 @@
         icon: 'list-view',
         category: 'tru',
         attributes: {
-        	blockCount: {
+        	riderCount: {
         		type: 'number',
         		default: 1
         	}
@@ -62,7 +62,7 @@
             	replaceInnerBlocks( clientId, innerBlocks, false );    
             }            
             
-            const [ template, setTemplate ] = useState( getRiderTemplate( attributes.blockCount ) );            
+            const [ template, setTemplate ] = useState( getRiderTemplate( attributes.riderCount ) );            
             
         	return (
         		el( Fragment, {},
@@ -70,14 +70,14 @@
                     	// Panel
                     	el( PanelBody, { title: 'Block Settings', initialOpen: true },
                     		el( RangeControl, {
-                				label: 'Count',
+                				label: 'Rider Count',
                 				min: 1,
                 				max: 10,
                 				onChange: ( value ) => {
-                    				updateRiders(attributes.blockCount, value);
-                					props.setAttributes( { blockCount: value } );
+                    				updateRiders(attributes.riderCount, value);
+                					props.setAttributes( { riderCount: value } );
                 				},
-                				value: attributes.count
+                				value: attributes.riderCount
                             }),
                      
                     	)
