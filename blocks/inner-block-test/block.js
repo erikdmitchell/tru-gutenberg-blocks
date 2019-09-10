@@ -1,7 +1,7 @@
-(function (blocks, editor, components, i18n, element) {
+(function (blocks, editor, components, i18n, element, data) {
     const el = wp.element.createElement;
-    const { registerBlockType } = wp.blocks;
-    const { InnerBlocks } = wp.editor;
+    const { registerBlockType } = blocks;
+    const { InnerBlocks } = editor;
 	const { RichText, InspectorControls } = editor;
 	const { Fragment, useState } = element;
     const {
@@ -10,6 +10,7 @@
     	PanelBody
     } = components;
     const { times } = lodash;
+    const { dispatch, useSelect, registry } = data;
      
     const BLOCKS_TEMPLATE = [
         [ 'core/image', {} ],
@@ -36,8 +37,8 @@
                 return times( count, () => [ 'core/image' ] );
             }            
             
-            var updateColumns = function(oldCount, newCount) {
-            	const { clientId } = ownProps;
+            var updateColumns = function(oldCount, newCount) {              
+            	const { clientId } = props;
             	const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
             	const { getBlocks } = registry.select( 'core/block-editor' );
             
@@ -115,5 +116,6 @@
   window.wp.editor,
   window.wp.components,
   window.wp.i18n,
-  window.wp.element
+  window.wp.element,
+  window.wp.data
 )
