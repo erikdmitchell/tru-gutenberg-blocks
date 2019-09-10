@@ -1,5 +1,7 @@
 .wp-block-tru-blocks-power-ranking-rider {}
-.power-ranking-rider {}
+.power-ranking-rider {
+    overflow: hidden;
+}
 .power-ranking-rider .power-ranking-rider-image {
     float: left;
 }
