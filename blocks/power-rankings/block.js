@@ -33,11 +33,11 @@
             var attributes = props.attributes;
             
             // load functions.
-            var getColumnsTemplate = function(count) {
+            var getRiderTemplate = function(count) {
                 return times( count, () => [ 'tru-blocks/power-ranking-rider' ] );
             }            
             
-            var updateColumns = function(oldCount, newCount) {              
+            var updateRiders = function(oldCount, newCount) {              
             	const { clientId } = props;
             	const { replaceInnerBlocks } = dispatch( 'core/block-editor' );
             	const { getBlocks } = select( 'core/block-editor' );
@@ -45,9 +45,9 @@
             	let innerBlocks = getBlocks( clientId );
             
             	// Redistribute available width for existing inner blocks.
-            	const isAddingColumn = newCount > oldCount;
+            	const isAddingRider = newCount > oldCount;
             
-            	if ( isAddingColumn ) {              	
+            	if ( isAddingRider ) {              	
             		innerBlocks = [
             			...innerBlocks,
             			...times( newCount - oldCount, () => {
@@ -62,7 +62,7 @@
             	replaceInnerBlocks( clientId, innerBlocks, false );    
             }            
             
-            const [ template, setTemplate ] = useState( getColumnsTemplate( attributes.blockCount ) );            
+            const [ template, setTemplate ] = useState( getRiderTemplate( attributes.blockCount ) );            
             
         	return (
         		el( Fragment, {},
@@ -74,7 +74,7 @@
                 				min: 1,
                 				max: 10,
                 				onChange: ( value ) => {
-                    				updateColumns(attributes.blockCount, value);
+                    				updateRiders(attributes.blockCount, value);
                 					props.setAttributes( { blockCount: value } );
                 				},
                 				value: attributes.count
@@ -90,7 +90,7 @@
     					__experimentalOnSelectTemplateOption: setTemplate,
     					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
     						if ( nextTemplate === undefined ) {
-    							nextTemplate = getColumnsTemplate( DEFAULT_BLOCK_COUNT );
+    							nextTemplate = getRiderTemplate( DEFAULT_BLOCK_COUNT );
     						}
     
     						setTemplate( nextTemplate );
