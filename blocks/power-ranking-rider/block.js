@@ -41,8 +41,6 @@
             },
             lastWeek: {
                 type: 'string',
-                //source: 'children',
-                //selector: 'div.power-ranking-rider-last-week',
                 default: 'n/a'
             },			          
         },
