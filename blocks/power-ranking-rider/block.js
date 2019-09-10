@@ -126,7 +126,7 @@
                         el( 'div', { className: 'power-ranking-rider-content' },
                             el( 'div', { className: 'power-ranking-rider-name' }, attributes.riderName ),
                                 attributes.details && el( 'div', { className: 'power-ranking-rider-details' }, attributes.details ),
-                                attributes.lastWeek && el( 'div', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
+                                //attributes.lastWeek && el( 'div', { className: 'power-ranking-rider-last-week' }, attributes.lastWeek )
                         )
                     )
                 )
