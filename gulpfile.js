@@ -14,7 +14,7 @@ var buildInclude = [
         '**/*.png',
         
         // include specific files and folders
-        'screenshot.png',
+        //'screenshot.png',
         'readme.txt',
 
         // exclude files and folders
