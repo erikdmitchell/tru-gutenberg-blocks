@@ -67,12 +67,12 @@ final class TRU_Gutenberg_Blocks {
      * @return void
      */
     public function includes() {
-        //include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
+        // include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
     }
-    
+
     /**
      * Load blocks.
-     * 
+     *
      * @access public
      * @return void
      */
@@ -80,7 +80,7 @@ final class TRU_Gutenberg_Blocks {
         foreach ( glob( TRU_GUTENBERG_BLOCKS_PATH . 'blocks/**/*.php' ) as $file ) :
             include_once( $file );
         endforeach;
-    }    
+    }
 
     /**
      * Init function.
@@ -89,13 +89,13 @@ final class TRU_Gutenberg_Blocks {
      * @return void
      */
     public function init() {
-        add_filter( 'block_categories', array( $this, 'block_categories'), 10, 2 );
+        add_filter( 'block_categories', array( $this, 'block_categories' ), 10, 2 );
     }
-    
+
 
     /**
      * Custom block categories.
-     * 
+     *
      * @access public
      * @param mixed $categories array.
      * @param mixed $post object.
@@ -105,7 +105,7 @@ final class TRU_Gutenberg_Blocks {
         if ( $post->post_type !== 'post' ) {
             return $categories;
         }
-        
+
         return array_merge(
             $categories,
             array(
@@ -117,8 +117,8 @@ final class TRU_Gutenberg_Blocks {
             )
         );
     }
-    
-    
+
+
 }
 
 new TRU_Gutenberg_Blocks();

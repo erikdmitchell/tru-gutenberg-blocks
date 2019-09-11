@@ -32,4 +32,4 @@ if ( ! class_exists( 'TRU_Gutenberg_Blocks' ) ) {
 /**
  * WP Developer Tutorial (basics): https://developer.wordpress.org/block-editor/tutorials/block-tutorial/
  * WP for JS Tutorial: https://javascriptforwp.com/courses/wordpress-block-development/
- */    
+ */
