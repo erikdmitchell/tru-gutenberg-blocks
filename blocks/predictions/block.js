@@ -13,7 +13,7 @@
     	PanelBody
     } = components;    
     
-    registerBlockType('tru-blocks/predictions-wrap', { 
+    registerBlockType('tru-blocks/predictions', { 
         title: i18n.__('Predictions'),
         description: i18n.__('A custom block for displaying rider predictions wrap up.'),
         icon: 'money',
@@ -22,12 +22,12 @@
             riderName: {
                 type: 'array',
                 source: 'children',
-                selector: 'div.predictions-wrap-name',
+                selector: 'div.predictions-name',
             },
             details: {
                 type: 'array',
                 source: 'children',
-                selector: 'div.predictions-wrap-details'
+                selector: 'div.predictions-details'
             },
             mediaID: {
                 type: 'number',
@@ -67,8 +67,8 @@
                     	) 
                     ),                    
                     el('li', { className: props.className },
-                        el('div', { className: 'predictions-wrap' },                    
-                            el( 'div', { className: attributes.mediaID ? 'predictions-wrap-image image-active' : 'predictions-wrap-image image-inactive' },
+                        el('div', { className: 'predictions' },                    
+                            el( 'div', { className: attributes.mediaID ? 'predictions-image image-active' : 'predictions-image image-inactive' },
                                 el( MediaUpload, {
                                     onSelect: onSelectImage,
                                     type: 'image',
@@ -84,10 +84,10 @@
                                 } )
                             ),
                             
-                            el( 'div', { className: 'predictions-wrap-content' },
+                            el( 'div', { className: 'predictions-content' },
                                 el( RichText, {
                                     tagName: 'p',
-                                    className: 'predictions-wrap-name',
+                                    className: 'predictions-name',
                                     inline: false,
                                     placeholder: i18n.__( 'Rider Name' ),
                                     value: attributes.riderName,
@@ -117,15 +117,15 @@
             
             return (
                 el( 'li', { className: props.className },
-                    el('div', { className: 'predictions-wrap'  },
+                    el('div', { className: 'predictions'  },
                         attributes.mediaURL &&
-                        el( 'div', { className: 'predictions-wrap-image' },
+                        el( 'div', { className: 'predictions-image' },
                             el( 'img', { src: attributes.mediaURL } ),
                         ),
-                        el( 'div', { className: 'predictions-wrap-content' },
-                            el( 'div', { className: 'predictions-wrap-name' }, attributes.riderName ),
-                                attributes.details && el( 'div', { className: 'predictions-wrap-details' }, attributes.details ),
-                                //attributes.lastWeek && el( 'div', { className: 'predictions-wrap-last-week' }, attributes.lastWeek )
+                        el( 'div', { className: 'predictions-content' },
+                            el( 'div', { className: 'predictions-name' }, attributes.riderName ),
+                                attributes.details && el( 'div', { className: 'predictions-details' }, attributes.details ),
+                                //attributes.lastWeek && el( 'div', { className: 'predictions-last-week' }, attributes.lastWeek )
                         )
                     )
                 )
