@@ -20,8 +20,8 @@
     const DEFAULT_BLOCK_COUNT = 1;
 
     registerBlockType( 'tru-blocks/race-prediction-results', {
-        title: 'Power Rankings',
-        icon: 'list-view',
+        title: 'Race Prediction Results',
+        icon: 'awards',
         category: 'tru',
         attributes: {
         	riderCount: {
@@ -66,42 +66,26 @@
             
         	return (
         		el( Fragment, {},
-                    el( InspectorControls, {},
-                    	el( PanelBody, { title: 'Block Settings', initialOpen: true },
-                    		el( RangeControl, {
-                				label: 'Rider Count',
-                				min: 1,
-                				max: 10,
-                				onChange: ( value ) => {
-                    				updateRiders(attributes.riderCount, value);
-                					props.setAttributes( { riderCount: value } );
-                				},
-                				value: attributes.riderCount
-                            }),
-                     
-                    	)
-                     
-                    ),
         			/*  
         			 * Here will be your block markup 
         			 */
         			 el( 'div', { className: 'race-prediction-results-wrap' },
-        			 el( 'ol', { reversed: true},
-                     el( InnerBlocks, {
-    					__experimentalOnSelectTemplateOption: setTemplate,
-    					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
-    						if ( nextTemplate === undefined ) {
-    							nextTemplate = getRiderTemplate( DEFAULT_BLOCK_COUNT );
-    						}
-    
-    						setTemplate( nextTemplate );
-    					},
-    					__experimentalAllowTemplateOptionSkip: true,
-    					allowedBlocks: ALLOWED_BLOCKS,
-                        template: template,
-                        templateLock: false
-                     }) 
-                     )  
+        			    el( 'ol', {},
+                             el( InnerBlocks, {
+            					__experimentalOnSelectTemplateOption: setTemplate,
+            					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
+            						if ( nextTemplate === undefined ) {
+            							nextTemplate = getRiderTemplate( DEFAULT_BLOCK_COUNT );
+            						}
+            
+            						setTemplate( nextTemplate );
+            					},
+            					__experimentalAllowTemplateOptionSkip: true,
+            					allowedBlocks: ALLOWED_BLOCKS,
+                                template: template,
+                                templateLock: false
+                             }) 
+                        )  
                      )   			 
         		)
             )
@@ -109,9 +93,10 @@
         save: ( props ) => {
             return ( 
                 el( 'div', { className: 'race-prediction-results-wrap' },
-                el( 'ol', { reversed: true },
-                    el( InnerBlocks.Content, {} )
-                ))
+                    el( 'ol', {},
+                        el( InnerBlocks.Content, {} )
+                    )
+                )
             )
         },
     }); 

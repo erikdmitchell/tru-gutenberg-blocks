@@ -9,6 +9,7 @@
         description: i18n.__('A custom block for displaying rider predictions.'),
         icon: 'money',
         category: 'tru',
+        parent: ['tru-blocks/race-prediction-results'],
         attributes: { 
             riderName: {
                 type: 'string',
@@ -27,56 +28,48 @@
             var attributes = props.attributes;
 
             return (          
-                el( 'div', { className: props.className  },                    
-                    el('ol', {},
-                        el('li', { className: 'predictions' },                                
-                            el( TextControl, {
-                                className: 'rider-name',
-                                placeholder: i18n.__( 'Rider Name' ),
-                                value: attributes.riderName,
-                                onChange: function( newRiderName ) {
-                                    props.setAttributes( { riderName: newRiderName } );
-                                },
-                                keepplaceholderonfocus: 'true',
-                            } ),
-                            el( TextControl, {
-                                className: 'rider-place',
-                                placeholder: i18n.__( 'Rider Place' ),
-                                value: attributes.place,
-                                onChange: function( newPlace ) {
-                                    props.setAttributes( { place: newPlace } );
-                                },
-                                keepplaceholderonfocus: 'true',
-                                type: 'number',
-                            } ),
-                            el( TextControl, {
-                                className: 'points',
-                                placeholder: i18n.__( 'Points' ),
-                                value: attributes.points,
-                                onChange: function( newPoints ) {
-                                    props.setAttributes( { points: newPoints } );
-                                },
-                                keepplaceholderonfocus: 'true',
-                                type: 'number',
-                            } ),					
-                        )   
-                    )
-                )
+                el('li', { className: props.className },                                
+                    el( TextControl, {
+                        className: 'rider-name',
+                        placeholder: i18n.__( 'Rider Name' ),
+                        value: attributes.riderName,
+                        onChange: function( newRiderName ) {
+                            props.setAttributes( { riderName: newRiderName } );
+                        },
+                        keepplaceholderonfocus: 'true',
+                    } ),
+                    el( TextControl, {
+                        className: 'rider-place',
+                        placeholder: i18n.__( 'Rider Place' ),
+                        value: attributes.place,
+                        onChange: function( newPlace ) {
+                            props.setAttributes( { place: newPlace } );
+                        },
+                        keepplaceholderonfocus: 'true',
+                        type: 'number',
+                    } ),
+                    el( TextControl, {
+                        className: 'points',
+                        placeholder: i18n.__( 'Points' ),
+                        value: attributes.points,
+                        onChange: function( newPoints ) {
+                            props.setAttributes( { points: newPoints } );
+                        },
+                        keepplaceholderonfocus: 'true',
+                        type: 'number',
+                    } ),					
+                )   
             )
         },
         save: function (props) {
             var attributes = props.attributes;
            
             return (
-                el( 'div', { className: props.className  },                    
-                    el('ol', {},
-                        el('li', { className: 'predictions' },
-                            el( 'div', { className: 'rider-name' }, attributes.riderName ),
-                            el( 'div', { className: 'rider-place' }, attributes.place ),
-                            el( 'div', { className: 'points' }, attributes.points ),                            
-                        )
-                    )
-                )                
+                el('li', { className: props.className },
+                    el( 'div', { className: 'rider-name' }, attributes.riderName ),
+                    el( 'div', { className: 'rider-place' }, attributes.place ),
+                    el( 'div', { className: 'points' }, attributes.points ),                            
+                )               
             );
         }
     });	

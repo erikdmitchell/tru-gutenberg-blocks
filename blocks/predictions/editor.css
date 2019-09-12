@@ -1,17 +1,17 @@
-.wp-block-tru-blocks-predictions .predictions .components-base-control {
+.wp-block-tru-blocks-predictions .components-base-control {
     float: left;
     width: 31.333%;
     margin-right: 2%;
 }
-.wp-block-tru-blocks-predictions .predictions .components-base-control:last-child {
+.wp-block-tru-blocks-predictions .components-base-control:last-child {
     margin-right: 0;
 }
-.wp-block-tru-blocks-predictions .predictions .components-base-control.rider-name {
+.wp-block-tru-blocks-predictions .components-base-control.rider-name {
     width: 76%;
 }
-.wp-block-tru-blocks-predictions .predictions .components-base-control.rider-place {
+.wp-block-tru-blocks-predictions .components-base-control.rider-place {
     width: 10%;
 }
-.wp-block-tru-blocks-predictions .predictions .components-base-control.points {
+.wp-block-tru-blocks-predictions .components-base-control.points {
     width: 10%;
 }
