@@ -6,7 +6,7 @@ function tru_predictions_register_block() {
     wp_register_script(
         'tru-predictions-script',
         $url . 'block.js',
-        array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-i18n', 'wp-editor' ),
+        array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-i18n' ),
         TRU_GUTENBERG_BLOCKS_VERSION
     );
 
