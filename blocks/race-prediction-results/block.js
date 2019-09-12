@@ -62,36 +62,37 @@
             
         	return (
         		el( 'div', { className: props.className },
-        			/*  
-        			 * Here will be your block markup 
-        			 */
-        			 el( 'div', { className: 'race-prediction-results-wrap' },
-                        el( TextControl, {
-                            className: 'race-name',
-                            placeholder: i18n.__( 'Race Name' ),
-                            value: attributes.raceName,
-                            onChange: function( newRaceName ) {
-                                props.setAttributes( { raceName: newRaceName } );
-                            },
-                            keepplaceholderonfocus: 'true',
-                        } ),        			 
-        			    el( 'ol', {},
-                             el( InnerBlocks, {
-            					__experimentalOnSelectTemplateOption: setTemplate,
-            					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
-            						if ( nextTemplate === undefined ) {
-            							nextTemplate = getRiderTemplate( DEFAULT_BLOCK_COUNT );
-            						}
-            
-            						setTemplate( nextTemplate );
-            					},
-            					__experimentalAllowTemplateOptionSkip: true,
-            					allowedBlocks: ALLOWED_BLOCKS,
-                                template: template,
-                                templateLock: false
-                             }) 
-                        )  
-                     )   			 
+                    el( TextControl, {
+                        tagName: 'h3',
+                        className: 'race-name',
+                        placeholder: i18n.__( 'Race Name' ),
+                        value: attributes.raceName,
+                        onChange: function( newRaceName ) {
+                            props.setAttributes( { raceName: newRaceName } );
+                        },
+                        keepplaceholderonfocus: 'true',
+                    } ),   
+                    el( 'div', { className: 'race-headers'},
+                        el( 'div', { className: 'rider-name'}, 'Prediction'),
+                        el( 'div', { className: 'rider-place'}, 'Result'),
+                        el( 'div', { className: 'points'}, 'Points'),                      
+                    ),     			 
+    			    el( 'ol', {},
+                         el( InnerBlocks, {
+        					__experimentalOnSelectTemplateOption: setTemplate,
+        					__experimentalOnSelectTemplateOption: ( nextTemplate ) => {
+        						if ( nextTemplate === undefined ) {
+        							nextTemplate = getRiderTemplate( DEFAULT_BLOCK_COUNT );
+        						}
+        
+        						setTemplate( nextTemplate );
+        					},
+        					__experimentalAllowTemplateOptionSkip: true,
+        					allowedBlocks: ALLOWED_BLOCKS,
+                            template: template,
+                            templateLock: false
+                         }) 
+                    )   			 
         		)
             )
         },
@@ -100,11 +101,14 @@
             
             return ( 
                 el( 'div', { className: props.className },
-                    el( 'div', { className: 'race-prediction-results-wrap' },
-                        el( 'div', { className: 'race-name' }, attributes.raceName ),
-                        el( 'ol', {},
-                            el( InnerBlocks.Content, {} )
-                        )
+                    el( 'h3', { className: 'race-name' }, attributes.raceName ),
+                    el( 'div', { className: 'race-headers'},
+                        el( 'div', { className: 'rider-name'}, 'Prediction'),
+                        el( 'div', { className: 'rider-place'}, 'Result'),
+                        el( 'div', { className: 'points'}, 'Points'),                      
+                    ),                     
+                    el( 'ol', {},
+                        el( InnerBlocks.Content, {} )
                     )
                 )
             )
