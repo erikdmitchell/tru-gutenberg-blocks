@@ -1,6 +1,5 @@
 (function (blocks, components, i18n, element) {
-    var el = element.createElement;
-    
+    const el = element.createElement;
     const registerBlockType = blocks.registerBlockType;
     const TextControl = components.TextControl; 
     
@@ -40,7 +39,7 @@
                     } ),
                     el( TextControl, {
                         className: 'rider-place',
-                        placeholder: i18n.__( 'Rider Place' ),
+                        placeholder: i18n.__( 'Place' ),
                         value: attributes.place,
                         onChange: function( newPlace ) {
                             props.setAttributes( { place: newPlace } );

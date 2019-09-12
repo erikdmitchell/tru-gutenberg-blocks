@@ -2,15 +2,11 @@
     const el = wp.element.createElement;
     const { registerBlockType, createBlock } = blocks;
     const { InnerBlocks } = editor;
-	const { RichText, InspectorControls } = editor;
-	const { Fragment, useState } = element;
-    const {
-    	RangeControl,
-    	Panel,
-    	PanelBody
-    } = components;
+	const { RichText } = editor;
+	const { useState } = element;
     const { times, dropRight } = lodash;
     const { dispatch, select, registry } = data;
+    const TextControl = components.TextControl;
      
     const BLOCKS_TEMPLATE = [
         [ 'tru-blocks/predictions', {} ]
@@ -24,9 +20,9 @@
         icon: 'awards',
         category: 'tru',
         attributes: {
-        	riderCount: {
-        		type: 'number',
-        		default: 1
+        	raceName: {
+        		type: 'string',
+        		selector: 'div.race-name'
         	}
         },       
         edit: function( props ) {
@@ -65,11 +61,20 @@
             const [ template, setTemplate ] = useState( getRiderTemplate( attributes.riderCount ) );            
             
         	return (
-        		el( Fragment, {},
+        		el( 'div', { className: props.className },
         			/*  
         			 * Here will be your block markup 
         			 */
         			 el( 'div', { className: 'race-prediction-results-wrap' },
+                        el( TextControl, {
+                            className: 'race-name',
+                            placeholder: i18n.__( 'Race Name' ),
+                            value: attributes.raceName,
+                            onChange: function( newRaceName ) {
+                                props.setAttributes( { raceName: newRaceName } );
+                            },
+                            keepplaceholderonfocus: 'true',
+                        } ),        			 
         			    el( 'ol', {},
                              el( InnerBlocks, {
             					__experimentalOnSelectTemplateOption: setTemplate,
@@ -91,10 +96,15 @@
             )
         },
         save: ( props ) => {
+            var attributes = props.attributes;
+            
             return ( 
-                el( 'div', { className: 'race-prediction-results-wrap' },
-                    el( 'ol', {},
-                        el( InnerBlocks.Content, {} )
+                el( 'div', { className: props.className },
+                    el( 'div', { className: 'race-prediction-results-wrap' },
+                        el( 'div', { className: 'race-name' }, attributes.raceName ),
+                        el( 'ol', {},
+                            el( InnerBlocks.Content, {} )
+                        )
                     )
                 )
             )
