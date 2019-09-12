@@ -25,7 +25,7 @@
         },
         edit: function (props) {
             var attributes = props.attributes;
-            
+
             return (          
                 el( 'div', { className: props.className  },                    
                     el('ol', {},
@@ -47,6 +47,7 @@
                                     props.setAttributes( { place: newPlace } );
                                 },
                                 keepplaceholderonfocus: 'true',
+                                type: 'number',
                             } ),
                             el( TextControl, {
                                 className: 'points',
@@ -56,6 +57,7 @@
                                     props.setAttributes( { points: newPoints } );
                                 },
                                 keepplaceholderonfocus: 'true',
+                                type: 'number',
                             } ),					
                         )   
                     )
@@ -64,7 +66,7 @@
         },
         save: function (props) {
             var attributes = props.attributes;
-            
+           
             return (
                 el( 'div', { className: props.className  },                    
                     el('ol', {},
