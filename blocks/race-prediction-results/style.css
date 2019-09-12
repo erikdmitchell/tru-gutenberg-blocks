@@ -9,8 +9,7 @@
 }
 
 .wp-block-tru-blocks-race-prediction-results .rider-name {
-    width: 50%;
-    max-width: 50%; 
+    width: 50%; 
     float: left;
     padding-right: 15px;   
 }
@@ -18,14 +17,12 @@
 @media (min-width: 576px) {
     .wp-block-tru-blocks-race-prediction-results .rider-name {
         width: 33.333333%;
-        max-width: 33.333333%;
     }    
 }
 
 @media (min-width: 992px) {
     .wp-block-tru-blocks-race-prediction-results .rider-name {
         width: 25%;
-        max-width: 25%;
     }
 }
 
@@ -36,15 +33,13 @@
 .wp-block-tru-blocks-race-prediction-results .rider-place,
 .wp-block-tru-blocks-race-prediction-results .points {
     width: 25%;
-    max-width: 25%;
     float: left;    
 }
 
 @media (min-width: 576px) {
     .wp-block-tru-blocks-race-prediction-results .rider-place,
     .wp-block-tru-blocks-race-prediction-results .points {
-        width: 16.666667%
-        max-width: 16.666667%;
+        width: 16.666667%;
     }     
 }
 
@@ -52,6 +47,5 @@
     .wp-block-tru-blocks-race-prediction-results .rider-place,
     .wp-block-tru-blocks-race-prediction-results .points {
         width: 8.333333%;
-        max-width: 8.333333%;
     }    
 }
