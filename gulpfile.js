@@ -99,16 +99,11 @@ function sass(done) {
   return (
     gulp.src('./blocks/**/*.scss', { base: "./" })
         .pipe(plumber())
-        .pipe(sourcemaps.init())
         .pipe(gulpsass({
             errLogToConsole: true,
             outputStyle: 'expanded',
         }))
-        .pipe(sourcemaps.write({
-            includeContent: false
-        }))
         .pipe(autoprefixer('last 2 version', '> 1%', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(sourcemaps.write('.'))
         .pipe(plumber.stop())
         .pipe(gulp.dest('.'))
         
