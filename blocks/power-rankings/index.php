@@ -1,5 +1,17 @@
 <?php
+/**
+ * Power rankings block setup
+ *
+ * @package TRUGutenbergBlocks
+ * @since   0.1.0
+ */
 
+/**
+ * Register block.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_rankings_register_block() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-rankings/';
 
@@ -21,6 +33,12 @@ function tru_power_rankings_register_block() {
 }
 add_action( 'init', 'tru_power_rankings_register_block' );
 
+/**
+ * Add editor styles.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_rankings_block_editor_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-rankings/';
 
@@ -33,6 +51,12 @@ function tru_power_rankings_block_editor_styles() {
 }
 add_action( 'enqueue_block_editor_assets', 'tru_power_rankings_block_editor_styles' );
 
+/**
+ * Add frontend styles.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_rankings_block_frontend_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-rankings/';
 

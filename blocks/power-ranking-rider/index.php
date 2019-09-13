@@ -1,5 +1,17 @@
 <?php
+/**
+ * Power ranking block setup
+ *
+ * @package TRUGutenbergBlocks
+ * @since   0.1.0
+ */
 
+/**
+ * Register block.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_ranking_rider_register_block() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-ranking-rider/';
 
@@ -21,6 +33,12 @@ function tru_power_ranking_rider_register_block() {
 }
 add_action( 'init', 'tru_power_ranking_rider_register_block' );
 
+/**
+ * Add editor styles.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_ranking_rider_block_editor_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-ranking-rider/';
 
@@ -33,6 +51,12 @@ function tru_power_ranking_rider_block_editor_styles() {
 }
 add_action( 'enqueue_block_editor_assets', 'tru_power_ranking_rider_block_editor_styles' );
 
+/**
+ * Add frontend styles.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_ranking_rider_block_frontend_styles() {
     $url = TRU_GUTENBERG_BLOCKS_URL . 'blocks/power-ranking-rider/';
 
@@ -45,11 +69,24 @@ function tru_power_ranking_rider_block_frontend_styles() {
 }
 add_action( 'enqueue_block_assets', 'tru_power_ranking_rider_block_frontend_styles' );
 
+/**
+ * Add power_ranking image style.
+ *
+ * @access public
+ * @return void
+ */
 function tru_power_ranking_add_image_size() {
     add_image_size( 'power_ranking', 280, 160, true );
 }
 add_action( 'init', 'tru_power_ranking_add_image_size' );
 
+/**
+ * Add power_ranking image to admin.
+ *
+ * @access public
+ * @param mixed $sizes
+ * @return void
+ */
 function tru_power_ranking_image_sizes_admin( $sizes ) {
     return array_merge(
         $sizes,
