@@ -1,16 +1,11 @@
-.wp-block-tru-blocks-power-ranking-rider {}
 .power-ranking-rider {
     overflow: hidden;
 }
 .power-ranking-rider .power-ranking-rider-image {
     float: left;
 }
-.power-ranking-rider .power-ranking-rider-image.image-active {}
-.power-ranking-rider .power-ranking-rider-image.image-inactive {}
 .power-ranking-rider .power-ranking-rider-content {
     overflow: hidden;
-}
-.power-ranking-rider .power-ranking-rider-content .power-ranking-rider-name {
 }
 .power-ranking-rider .power-ranking-rider-content .power-ranking-rider-last-week {
     border: 1px solid #000;
