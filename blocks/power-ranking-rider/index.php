@@ -84,14 +84,14 @@ add_action( 'init', 'tru_power_ranking_add_image_size' );
  * Add power_ranking image to admin.
  *
  * @access public
- * @param mixed $sizes
- * @return void
+ * @param mixed $sizes array.
+ * @return array
  */
 function tru_power_ranking_image_sizes_admin( $sizes ) {
     return array_merge(
         $sizes,
         array(
-            'power_ranking' => __( 'Power Ranking' ),
+            'power_ranking' => __( 'Power Ranking', 'tru-gutenberg-blocks' ),
         )
     );
 }
