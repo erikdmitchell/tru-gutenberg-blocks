@@ -97,24 +97,20 @@ const gulp = require('gulp'),
 // compile sass
 function sass(done) {
   return (
-    gulp.src('./sass/*.scss')
+    gulp.src('./blocks/**/*.scss', { base: "./" })
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(gulpsass({
             errLogToConsole: true,
-            outputStyle: 'nested',
-            precision: 10
+            outputStyle: 'expanded',
         }))
         .pipe(sourcemaps.write({
             includeContent: false
         }))
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
         .pipe(autoprefixer('last 2 version', '> 1%', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(sourcemaps.write('.'))
         .pipe(plumber.stop())
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('.'))
         
   );
   done();
@@ -256,7 +252,6 @@ const watch = gulp.parallel(styles, scripts, watchFiles); // Watch Task
 exports.sass = sass;
 exports.mincss = mincss;
 exports.lintcss = lintcss;
-exports.beautifycss = beautifycss;
 exports.styles = styles;
 exports.js = js;
 exports.lintjs = lintjs;
