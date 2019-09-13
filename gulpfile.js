@@ -177,14 +177,11 @@ function zip(done) {
 }
 
 // define complex tasks
-const styles = gulp.series(sass, mincss); // Styles task
-const js = gulp.series(scripts); // compile and minimize js
-const build = gulp.series(styles, scripts, zip); // Package Distributable
-const watch = gulp.parallel(styles, scripts, watchFiles); // Watch Task
+const build = gulp.series(zip); // Package Distributable
+const watch = gulp.parallel(watchFiles); // Watch Task
 
 // export tasks
 exports.sass = sass;
-exports.styles = styles;
 exports.lintjs = lintjs;
 exports.phpcs = phpcs;
 exports.phpcbf = phpcbf;
