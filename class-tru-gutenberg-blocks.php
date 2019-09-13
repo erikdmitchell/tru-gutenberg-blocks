@@ -66,9 +66,7 @@ final class TRU_Gutenberg_Blocks {
      * @access public
      * @return void
      */
-    public function includes() {
-        // include_once( TRU_GUTENBERG_BLOCKS_PATH . 'gberg.php' );
-    }
+    public function includes() {}
 
     /**
      * Load blocks.
@@ -102,7 +100,7 @@ final class TRU_Gutenberg_Blocks {
      * @return array
      */
     public function block_categories( $categories, $post ) {
-        if ( $post->post_type !== 'post' ) {
+        if ( 'post' !== $post->post_type ) {
             return $categories;
         }
 
