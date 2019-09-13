@@ -32,5 +32,5 @@
     "jshint": "",
     "jshint-stylish": "",
     "stylelint": "^10.1.0"
-  },
+  }
 }
