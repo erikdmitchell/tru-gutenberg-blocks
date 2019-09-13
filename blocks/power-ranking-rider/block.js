@@ -106,7 +106,7 @@
                                         props.setAttributes( { details: newDetails } );
                                     },
                                     keepPlaceholderOnFocus: true,
-                                } ),
+                                } )
                             ),					
                         )
                     )
