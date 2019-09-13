@@ -1,30 +1,35 @@
 .power-ranking-rider {
-    overflow: hidden;
-    padding-left: 30px;
+  overflow: hidden;
+  padding-left: 30px;
 }
+
 .power-ranking-rider .power-ranking-rider-image img {
-    border-radius: 5px;
+  border-radius: 5px;
 }
+
 .power-ranking-rider .power-ranking-rider-content .power-ranking-rider-name {
-    font-weight: bold;
-    margin-bottom: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
+
 .power-ranking-rider .power-ranking-rider-image {
-    padding: 0;
-    float: left;
-    border-radius: 5px;
+  padding: 0;
+  float: left;
+  border-radius: 5px;
 }
+
 .power-ranking-rider .power-ranking-rider-content {
-    width: 100%;
-    float: left;
-    overflow: hidden;
+  width: 100%;
+  float: left;
+  overflow: hidden;
 }
+
 @media (min-width: 576px) {
-    .power-ranking-rider .power-ranking-rider-image {
-        padding: 0 15px;
-    }
-    .power-ranking-rider .power-ranking-rider-content {
-        width: auto;
-        float: none;
-    }
+  .power-ranking-rider .power-ranking-rider-image {
+    padding: 0 15px;
+  }
+  .power-ranking-rider .power-ranking-rider-content {
+    width: auto;
+    float: none;
+  }
 }
