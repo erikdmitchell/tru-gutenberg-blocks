@@ -32,5 +32,8 @@
     "jshint": "",
     "jshint-stylish": "",
     "stylelint": "^10.1.0"
+  },
+  "dependencies": {
+    "acorn": "^7.0.0"
   }
 }
