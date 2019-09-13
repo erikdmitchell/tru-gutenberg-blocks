@@ -111,47 +111,9 @@ function sass(done) {
   done();
 }
 
-// minify all css
-function mincss(done) {
-  return (
-    gulp.src(cssInclude)
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write({
-            includeContent: false
-        }))
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(plumber.stop())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(minifycss({
-            maxLineLen: 80
-        }))
-        .pipe(gulp.dest('./'))
-        
-  );
-  done();
-}
-
 /**
  * Scripts
  */
-
-// min all js files
-function scripts() {
-  return (
-    gulp.src(jsInclude)
-      .pipe(rename({
-          suffix: '.min'
-      }))
-      .pipe(uglify())
-      .pipe(gulp.dest("./"))
-  );
-}
 
 // js linting with eslint.
 function lintjs(done) {
@@ -200,8 +162,8 @@ function phpcbf(done) {
 
 // Watch files
 function watchFiles() {
-  gulp.watch('./sass/**/*', sass);
-  gulp.watch('./js/**/*.js', js);
+  gulp.watch('./blocks/**/*', sass);
+  gulp.watch('./blocks/**/*.js', js);
 }
 
 // gulp zip
@@ -222,9 +184,7 @@ const watch = gulp.parallel(styles, scripts, watchFiles); // Watch Task
 
 // export tasks
 exports.sass = sass;
-exports.mincss = mincss;
 exports.styles = styles;
-exports.js = js;
 exports.lintjs = lintjs;
 exports.phpcs = phpcs;
 exports.phpcbf = phpcbf;
