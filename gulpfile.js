@@ -137,19 +137,6 @@ function mincss(done) {
   done();
 }
 
-// css linting with Stylelint.
-function lintcss(done) {
-  return (
-    gulp.src(cssInclude)
-        .pipe(stylelint({
-          reporters: [
-            {formatter: 'string', console: true}
-          ]
-        }))
-  );
-  done();
-}
-
 /**
  * Scripts
  */
@@ -246,7 +233,6 @@ const watch = gulp.parallel(styles, scripts, watchFiles); // Watch Task
 // export tasks
 exports.sass = sass;
 exports.mincss = mincss;
-exports.lintcss = lintcss;
 exports.styles = styles;
 exports.js = js;
 exports.lintjs = lintjs;
