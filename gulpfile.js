@@ -87,8 +87,7 @@ const gulp = require('gulp'),
     gulpphpcs = require('gulp-phpcs'), // Gulp plugin for running PHP Code Sniffer.
     gphpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
-    gzip = require('gulp-zip'), // gulp zip
-    beautify = require('gulp-jsbeautifier');
+    gzip = require('gulp-zip'); // gulp zip
 
 /**
  * Styles
@@ -163,16 +162,6 @@ function lintjs(done) {
   done();
 }
 
-// make pretty
-function beautifyjs(done) {
-  return (
-    gulp.src(jsInclude)
-        .pipe(beautify())
-        .pipe(gulp.dest('./'))
-  );
-  done();
-}
-
 /**
  * PHP
  */
@@ -236,7 +225,6 @@ exports.mincss = mincss;
 exports.styles = styles;
 exports.js = js;
 exports.lintjs = lintjs;
-exports.beautifyjs = beautifyjs;
 exports.phpcs = phpcs;
 exports.phpcbf = phpcbf;
 exports.zip = zip;
