@@ -87,7 +87,8 @@ const gulp = require('gulp'),
     gulpphpcs = require('gulp-phpcs'), // Gulp plugin for running PHP Code Sniffer.
     gphpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
-    gzip = require('gulp-zip'); // gulp zip
+    gzip = require('gulp-zip'), // gulp zip
+    eslint = require('gulp-eslint');
 
 /**
  * Styles
@@ -152,14 +153,14 @@ function scripts() {
   );
 }
 
-// js linting with JSHint.
+// js linting with eslint.
 function lintjs(done) {
-  return (
-    gulp.src(jsInclude)
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish))
-  );
-  done();
+    return (
+        gulp.src(jsInclude).pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+    )
+    done();
 }
 
 /**
