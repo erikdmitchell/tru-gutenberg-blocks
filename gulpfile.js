@@ -88,8 +88,7 @@ const gulp = require('gulp'),
     gphpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
     gzip = require('gulp-zip'), // gulp zip
-    beautify = require('gulp-jsbeautifier'),
-    cssbeautify = require('gulp-cssbeautify');
+    beautify = require('gulp-jsbeautifier');
 
 /**
  * Styles
@@ -156,16 +155,6 @@ function lintcss(done) {
             {formatter: 'string', console: true}
           ]
         }))
-  );
-  done();
-}
-
-// make pretty
-function beautifycss(done) {
-  return (
-    gulp.src(cssInclude)
-        .pipe(cssbeautify())
-        .pipe(gulp.dest('./'))
   );
   done();
 }
