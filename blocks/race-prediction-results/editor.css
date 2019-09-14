@@ -1,0 +1,9 @@
+.block-editor .wp-block-tru-blocks-race-prediction-results .race-headers > div {
+  float: left;
+  width: 31.333%;
+  margin-right: 2%;
+}
+
+.block-editor .wp-block-tru-blocks-race-prediction-results .race-headers > div:last-child {
+  margin-right: 0;
+}

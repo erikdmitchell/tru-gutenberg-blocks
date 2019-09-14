@@ -1,0 +1,12 @@
+.power-rankings-wrap ol {
+    padding-inline-start: 25px;
+    list-style-position: outside;
+
+    li {
+        margin-bottom: 15px;
+        
+        &:last-child {
+            margin-bottom: 0;    
+        }
+    }
+}
